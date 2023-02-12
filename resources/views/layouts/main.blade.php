@@ -7,6 +7,7 @@
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="//cdn.jsdelivr.net/npm/easy-toggler@2.2.7/dist/easy-toggler.iife.min.js"></script>
     <script src="/js/main.js"></script>
 </head>
 <body>

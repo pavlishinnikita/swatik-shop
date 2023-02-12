@@ -1,0 +1,152 @@
+/** GOODS STYLES **/
+.good-modal {
+    margin: 20px;
+    padding: 20px;
+    background: #000000;
+    color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
+}
+
+.good-modal__header, .good-modal__body, .good-modal__footer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.good-modal__header {
+    margin-top: -125px;
+}
+
+.good-modal__header img {
+    width: 100px;
+}
+
+.good-modal__logo {
+    position: relative;
+    margin-top: -125px; /* half of image height */
+    z-index: -1;
+    align-self: center;
+}
+
+.good-modal .inputs-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.inputs-group label {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.inputs-group input {
+    border-radius: 20px;
+    height: 30px;
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+    font-weight: bold;
+    background: #666666;
+}
+
+.inputs-group .cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inputs-group .cards img {
+    list-style: none;
+    flex: 0 0 33%;
+}
+
+.inputs-group input::placeholder, .inputs-group input {
+    color: #cccccc;
+}
+
+.inputs-group input:focus, .inputs-group input:focus-visible {
+    border: none;
+    outline: none;
+}
+
+.good-modal .buttons-group {
+    width: 100%;
+}
+
+.buttons-group .info {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #999999;
+}
+
+.buttons-group button {
+    border-radius: 20px;
+    height: 50px;
+    width: 100%;
+    margin-bottom: 10px;
+    background: #33cc99;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+
+#payment-for-ua::after {
+    display: inline-block;
+    width: 25px;
+    height: 15px;
+    margin-left: 5px;
+    content: "";
+    background-image: url("//cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/flags/1x1/ua.svg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/** MODAL STYLES **/
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    visibility: hidden;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.9s ease-out;
+}
+
+.modal.show {
+    visibility: visible;
+    z-index: 10;
+    opacity: 1;
+}
+
+.modal-header {
+    display: flex;
+    align-items: revert;
+    flex-direction: row-reverse;
+}
+
+.modal .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.7;
+}
+
+.modal-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 550px;
+    border: 50px;
+}
