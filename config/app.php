@@ -29,6 +29,7 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+    'appName' => env('APP_NAME', 'AstroSea'),
 
     /*
     |--------------------------------------------------------------------------
