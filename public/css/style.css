@@ -1,3 +1,9 @@
+/** MAIN **/
+main.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /** GOODS STYLES **/
 .good-modal {
     margin: 20px;
@@ -16,18 +22,28 @@
 }
 
 .good-modal__header {
-    margin-top: -125px;
 }
 
 .good-modal__header img {
     width: 100px;
 }
 
+.good-modal__header h1 {
+    margin: 0;
+}
+
 .good-modal__logo {
     position: relative;
-    margin-top: -125px; /* half of image height */
     z-index: -1;
-    align-self: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: -140px;
+    scale: 0.7;
+}
+
+.good-modal__logo.full {
+    z-index: 1;
 }
 
 .good-modal .inputs-group {
@@ -91,7 +107,6 @@
     font-weight: bold;
 }
 
-
 #payment-for-ua::after {
     display: inline-block;
     width: 25px;
@@ -102,6 +117,94 @@
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.good-type-name {
+    position: absolute;
+    left: 5%;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: -20px;
+}
+
+.good-modal.good-type .goods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    justify-content: space-around;
+}
+
+.good-modal.good-type .goods > div.good-wrapper {
+    flex-wrap: wrap;
+    flex: 0 0 15%;
+    align-self: center;
+
+    background: #333333;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
+    z-index: 3;
+    width: 10%;
+}
+
+.good-modal.good-type .goods > div.good-wrapper.privilege {
+    flex: 0 0 20%;
+}
+
+div.good-wrapper img {
+    scale: 0.7;
+    object-fit: cover;
+    max-width: 100%;
+    height: auto;
+}
+
+.good-modal.good-type .goods > div > span {
+    text-align: center;
+}
+
+.good-wrapper .good-name.colored {
+    margin-bottom: 10px;
+    font-weight: 900;
+}
+    /** HOME STYLES **/
+
+.home-wrapper .goods {
+}
+
+.goods .good-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.good-container .good-name {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.good-container .good-logo {
+
+}
+
+.good-container .good-logo img {
+    width: 150px;
+}
+
+/** circle element **/
+.circle-list {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: calc(100px / 2 + 0px);
+}
+
+.circle-list .circle-item {
+    position: absolute;
+    top: 50%; left: 50%;
+    margin: calc( -100px / 2 );
+    /*transition: all 2s ease-in-out; */
 }
 
 /** MODAL STYLES **/
@@ -119,7 +222,7 @@
     visibility: hidden;
     z-index: -1;
     opacity: 0;
-    transition: all 0.9s ease-out;
+    transition: all 0.3s ease-out;
 }
 
 .modal.show {
@@ -147,6 +250,15 @@
 .modal-wrapper {
     position: relative;
     z-index: 10;
-    width: 550px;
+    max-width: 60%;
     border: 50px;
+}
+
+/** MEDIA SECTION **/
+@media all and (max-width: 1024px) {
+    .circle-list .circle-item {
+        position: static;
+        transform: unset !important;
+        margin: unset;
+    }
 }

@@ -1,7 +1,7 @@
+<div class="good-modal__logo">
+    <img src="/images/pay-window/earth.png" alt="">
+</div>
 <div class="good-modal">
-    <div class="good-modal__logo">
-        <img src="/images/pay-window/earth.png" alt="">
-    </div>
     <div class="good-modal__header">
         <h1>{{$goodName ?? ''}}</h1>
     </div>

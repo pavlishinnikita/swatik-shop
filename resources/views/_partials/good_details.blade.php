@@ -1,10 +1,10 @@
+<div class="good-modal__logo">
+    <img src="/images/pay-window/earth.png" alt="">
+</div>
 <div class="good-modal">
-    <div class="good-modal__logo">
-        <img src="/images/pay-window/earth.png" alt="">
-    </div>
     <div class="good-modal__header">
-        <img src="{{$goodIcon ?? ''}}" alt="">
-        <h1>{{$goodName ?? ''}}</h1>
+        <img src="{{$item['image'] ?? ''}}" alt="">
+        <h1>{{$item['name'] ?? ''}}</h1>
     </div>
     <div class="good-modal__body">
         <div class="inputs-group">
@@ -13,7 +13,7 @@
         </div>
         <div class="buttons-group">
             <div class="info">*ввести промкод*</div>
-            <button>Оплатить {{$price ?? ''}}</button>
+            <button>Оплатить {{$item['price'] ?? ''}}</button>
         </div>
     </div>
     <div class="good-modal__footer">
