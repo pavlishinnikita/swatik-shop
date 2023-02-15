@@ -28,24 +28,38 @@ class GoodController extends Controller
     }
 
     /**
-     * Action for home page
+     * Action for getting good page
      * @param Request $request
      * @return Application|Factory|View
      */
     public function good(Request $request)
     {
-        $type = intval($request->get('type') ?? 0);
         $id = $request->get('id') ?? '';
-        $categoryWithGood = $this->goodService->getCategories([$type], [])[0] ?? null;
-        $view = match ($type) {
-            Good::TYPE_PRIVILEGE, Good::TYPE_CASE => '_partials/good_type_goods',
-            Good::TYPE_SIMPLE, Good::TYPE_SHELLS => '_partials/good_details',
-            default => ''
-        };
-        if (empty($view) || empty($categoryWithGood)) {
+        $good = $this->goodService->getGood(['id' => $id])[0] ?? null;
+        if (empty($good)) {
             throw new NotFoundHttpException('There are no goods.');
         }
-        return view($view, ['item' => $categoryWithGood, 'goodType' => $type]);
+        return view('_partials/good_details', ['item' => $good]);
+    }
+
+    /**
+     * Action for getting good category page
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function goodCategory(Request $request)
+    {
+        $id = $request->get('id') ?? '';
+        $categoryWithGood = $this->goodService->getCategories(['id' => $id])[0] ?? null;
+        if (empty($categoryWithGood) || (empty($categoryWithGood['goods'] ?? []))) {
+            throw new NotFoundHttpException('There are no goods.');
+        }
+        $view = $this->goodService->getGoodView($categoryWithGood);
+        // if category has only one good get that good
+        if (count($categoryWithGood['goods']) === 1) {
+            $categoryWithGood = $categoryWithGood['goods'][0];
+        }
+        return view($view, ['item' => $categoryWithGood]);
     }
 
     /**

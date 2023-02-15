@@ -2,6 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Good;
+use App\Models\GoodCategory;
+use \Illuminate\Database\Eloquent\Collection;
+
 /**
  * @package App\Services
  * @category Services
@@ -12,12 +16,41 @@ class GoodService
 {
     /**
      * Returns categories depending on type
-     * @param array $type - good category types
-     * @param array $conditionals - optional conditionals of category
-     * @return array - good categories
+     * @param array $conditions - optional conditionals of category
+     * @return array|Collection - good categories
      */
-    public function getCategories(array $type, array $conditionals = []) : array
+    public function getCategories(array $conditions = []) : array | Collection
     {
-        return [];
+        return GoodCategory::query()->with('goods')->where($conditions)->get()->all();
+    }
+
+    /**
+     * Returns categories depending on type
+     * @param array $conditions - optional conditionals of category
+     * @return array|Collection - good categories
+     */
+    public function getGood(array $conditions = []) : array | Collection
+    {
+        return Good::query()->with('category')->where($conditions)->get()->all();
+    }
+
+    /**
+     * Returns modal view depending on different conditions
+     * @param GoodCategory $goodCategory - category with goods for get view for
+     * @return string
+     */
+    public function getGoodView(GoodCategory $goodCategory) : string
+    {
+        $goodCount = count($goodCategory['goods'] ?? []);
+
+        if ($goodCategory['type'] == GoodCategory::TYPE_MULTIPLE) {
+            return '_partials/good_type_goods';
+        }
+
+        if ($goodCategory['type'] == GoodCategory::TYPE_COUNTABLE) {
+            // return modal for countable type like for buying several count of good
+        }
+
+        return '_partials/good_details';
     }
 }

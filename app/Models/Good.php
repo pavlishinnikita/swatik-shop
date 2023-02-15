@@ -13,19 +13,22 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Good extends Model
 {
+    protected $table = 'good';
     use HasFactory;
 
     /**
      * Good type constants
      */
-    const TYPE_SIMPLE = 1;
-    const TYPE_CASE = 2;
-    const TYPE_PRIVILEGE = 3;
-    const TYPE_SHELLS = 4;
-    const GOODS_TYPES = [
-        self::TYPE_SIMPLE => 'Товары',
-        self::TYPE_CASE => 'Кейсы',
-        self::TYPE_PRIVILEGE => 'Привелегии',
-        self::TYPE_SHELLS => 'Ракушки',
-    ];
+    const TYPE_DEFAULT = 1;
+    const TYPE_PRIVILEGE = 2;
+    const TYPE_CASE = 3;
+
+    /**
+     * Good category relation
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(GoodCategory::class,'id');
+    }
 }

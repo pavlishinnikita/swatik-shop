@@ -10,7 +10,7 @@ use App\Models\Good;
     <div class="good-modal__body">
         <div class="goods">
             @foreach($item['goods'] as $good)
-                <div class="good-wrapper <?= ($goodType ?? '') == Good::TYPE_PRIVILEGE ? 'privilege' : ''?>">
+                <div class="good-wrapper <?= ($good['type'] ?? '') == Good::TYPE_PRIVILEGE ? 'privilege' : ''?>" data-type="{{ $good['type'] ?? ''}}" data-id="{{ $good['id'] ?? '' }}">
                     <img src="{{ $good['image'] ?? '' }}" alt="">
                     <span class="good-name <?= ($goodType ?? '') == Good::TYPE_PRIVILEGE ? 'colored' : ''?>">{{ $good['name'] ?? '' }}</span>
                     <span class="good-price">{{ $good['price'] ?? '' }}</span>

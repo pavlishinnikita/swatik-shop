@@ -3,11 +3,11 @@
     <div class="wrapper home-wrapper">
         <div class="goods">
             <div class="circle-list">
-                @foreach($goods as $good)
+                @foreach($categories as $category)
                     <div class="circle-item">
-                        <div class="good-container" data-type="{{ $good['type'] ?? ''}}" data-id="{{ $good['id'] ?? '' }}">
-                            <div class="good-name">{{$good['name'] ?? ''}}</div>
-                            <div class="good-logo"><img src="{{$good['image'] ?? ''}}" alt=""></div>
+                        <div class="good-container" data-type="{{ $category['type'] ?? ''}}" data-id="{{ $category['id'] ?? '' }}">
+                            <div class="good-name">{{$category['name'] ?? ''}}</div>
+                            <div class="good-logo"><img src="{{$category['image'] ?? ''}}" alt=""></div>
                         </div>
                     </div>
                 @endforeach

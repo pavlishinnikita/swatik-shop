@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [DefaultController::class, 'index']);
 
 Route::get('/good', [GoodController::class, 'good']);
+Route::get('/good-category', [GoodController::class, 'goodCategory']);
 Route::get('/buy-good', [GoodController::class, 'buy']);
 Route::post('/buy-good', [GoodController::class, 'buy']);
 

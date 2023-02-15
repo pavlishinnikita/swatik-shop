@@ -50,7 +50,7 @@ document.addEventListener('click', (e) => {
         ]);
         request({
             method: 'get',
-            url: `/good?${params.toString()}`,
+            url: `/good-category?${params.toString()}`,
             success: function (response) {
                 const goodPayment = document.querySelector('#goodModal');
                 goodPayment.querySelector("[data-modal-body]").innerHTML = response.response;
@@ -65,9 +65,13 @@ document.addEventListener('click', (e) => {
     //#endregion
     // #paymentDetailsModal
     if (e.target.closest('.good-wrapper')) {
+        const params = new URLSearchParams([
+            ["type", e.target.closest('.good-wrapper').dataset.type],
+            ["id", e.target.closest('.good-wrapper').dataset.id]
+        ]);
         request({
             method: 'get',
-            url: `/buy-good`,
+            url: `/good?${params.toString()}`,
             success: function (response) {
                 const paymentDetailsModal = document.querySelector('#paymentDetailsModal');
                 paymentDetailsModal.querySelector("[data-modal-body]").innerHTML = response.response;
