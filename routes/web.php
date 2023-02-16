@@ -19,10 +19,4 @@ Route::get('/', [DefaultController::class, 'index']);
 
 Route::get('/good', [GoodController::class, 'good']);
 Route::get('/good-category', [GoodController::class, 'goodCategory']);
-Route::get('/buy-good', [GoodController::class, 'buy']);
 Route::post('/buy-good', [GoodController::class, 'buy']);
-
-Route::get('/test', function (\Illuminate\Http\Request $request) {
-    return response()->json(['test' => 'wtf']);
-    return view('_partials/good_type_goods');
-});

@@ -15,7 +15,12 @@ function request (settings) {
 
     xhr.open(method, url, true);
     xhr.onload = function () {
-        success(this);
+        if ((xhr.status >= 200 && xhr.status <= 299) || (xhr.status >= 400 && xhr.status <= 499)) {
+            success(this);
+        }
+        if ((xhr.status >= 500 && xhr.status <= 599)) {
+            error(this);
+        }
     }
     xhr.onerror = function () {
         error(this);
@@ -37,6 +42,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
             circle.style.transform = `rotate(${angle}deg) translate(${circleList.clientWidth / 2}px) rotate(-${angle}deg)`;
             angle += angleOffset;
         }
+    });
+    //#endregion
+    //#region init toggler
+    iziToast.settings({
+        timeout: 2000,
+        resetOnHover: true,
+        transitionIn: 'flipInX',
+        transitionOut: 'flipOutX',
+        position: 'topRight',
     });
     //#endregion
 });
@@ -87,4 +101,49 @@ document.addEventListener('click', (e) => {
         });
         return;
     }
+
+    if (e.target.closest('[data-payment]')) {
+        e.target.closest('form[data-form]').querySelector('input[name="payment"]').value = e.target.closest('[data-payment]').dataset.payment;
+        e.target.closest('form[data-form]').requestSubmit();
+    }
+});
+
+document.addEventListener('submit', (e) => {
+    const STEP = {
+        STEP_GOOD_DETAILS: 1,
+        STEP_CHOOSE_PAYMENT: 2,
+    };
+    if (e.target.dataset.form !== undefined) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let formData = new FormData(e.target);
+        request({
+            method: 'post',
+            url: `/buy-good`,
+            body: formData,
+            success: function (response) {
+                const responseData = JSON.parse(response.response);
+                if (responseData.step !== undefined) {
+                    e.target.querySelector('input[name="step"]').value = responseData.step;
+                }
+                if (responseData.step === STEP.STEP_CHOOSE_PAYMENT) {
+                    e.target.querySelector("#details-info").classList.toggle('hidden');
+                    e.target.querySelector("#payment-info").classList.toggle('hidden');
+                }
+                //#region process errors
+                if (response.status === 422) {
+                    for (const field in responseData) {
+                        if (e.target.querySelector(`[name="${field}"]`).parentElement.querySelector('.error')) {
+                            e.target.querySelector(`[name="${field}"]`).parentElement.querySelector('.error').innerHTML = responseData[field][0];
+                        }
+                        iziToast.error({title: 'Ошибка', message: responseData[field][0]});
+                    }
+                }
+                //#endregion
+            },
+            error: function (response) {
+            },
+        });
+    }
+    return false;
 });

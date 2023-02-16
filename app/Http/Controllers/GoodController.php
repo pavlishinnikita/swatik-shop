@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\GoodBuyingProcessConstant;
+use App\Http\Requests\OrderDataRequest;
 use App\Models\Good;
 use App\Services\GoodService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -64,16 +67,17 @@ class GoodController extends Controller
 
     /**
      * Action for buying good
-     * @param Request $request
-     * @return Application|Factory|View|void
+     * @param OrderDataRequest $request
+     * @return JsonResponse
      */
-    public function buy(Request $request)
+    public function buy(OrderDataRequest $request)
     {
-        // get good by id
-        if ($request->isMethod('post')) {
-            // buying logic
-        } else {
-            return view('_partials/good_payment');
+        $currentStep = intval($request->get('step')) + 1;
+        if ($currentStep === GoodBuyingProcessConstant::STEP_BUY_GOOD) {
+            // create order and return redirect link depending on payment method
         }
+        return response()->json([
+            'step' => $currentStep,
+        ]);
     }
 }
