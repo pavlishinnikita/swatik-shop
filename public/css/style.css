@@ -1,3 +1,4 @@
+
 /** MAIN **/
 main.wrapper {
     display: flex;
@@ -262,3 +263,42 @@ div.good-wrapper img {
         margin: unset;
     }
 }
+
+body{
+    background-image: url('/images/background.jpg');
+    background-size: cover;
+    font-family: Infra-black;
+
+}
+@font-face {
+    font-family: Infra-black;
+    src: url('/fonts/Infra-Black.ttf');
+}
+
+   a {
+   color: #fff;
+   text-decoration: none;
+}
+
+   header{
+   display: flex;
+   justify-content: space-between;
+   padding: 20px;
+   color:#fff;
+
+
+}
+   .header__section{
+       display:flex;
+       align-items: center;
+   }
+
+   .header__item{
+       padding: 10px 15px;
+       font-size: 20px;
+       margin-left: 5px;
+   }
+   .headerlogo{
+       font-weight: bold;
+       font-size: 35px;
+   }

@@ -11,12 +11,16 @@
     <script src="//cdn.jsdelivr.net/npm/easy-toggler@2.2.7/dist/easy-toggler.iife.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
     <script src="/js/main.js"></script>
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.ico">
 </head>
 <body>
+
+    @include('_partials/header')
+
     <main class="wrapper">
         @yield('content')
     </main>
+
 </body>
 </html>
 
