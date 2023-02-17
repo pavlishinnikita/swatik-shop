@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/main.js"></script>
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="/images/favicon.ico">
 </head>
 <body>
+
+    @include('_partials/header')
+
     <main class="wrapper">
         @yield('content')
     </main>
+
 </body>
 </html>
 
