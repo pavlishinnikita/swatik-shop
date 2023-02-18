@@ -5,6 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @package App\Models
+ * @category models
+ *
+ * class GoodCategory - representation of good category
+ */
 class GoodCategory extends Model
 {
     protected $table = 'good_category';

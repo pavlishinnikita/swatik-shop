@@ -6,6 +6,7 @@ use App\Constants\GoodBuyingProcessConstant;
 use App\Http\Requests\OrderDataRequest;
 use App\Models\Good;
 use App\Services\GoodService;
+use App\Services\OrderService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -23,9 +24,11 @@ class GoodController extends Controller
 {
     /**
      * @param GoodService $goodService
+     * @param OrderService $orderService
      */
     public function __construct(
-        private GoodService $goodService
+        private GoodService $goodService,
+        private OrderService $orderService,
     )
     {
     }
@@ -69,12 +72,18 @@ class GoodController extends Controller
      * Action for buying good
      * @param OrderDataRequest $request
      * @return JsonResponse
+     * @throws \Throwable
      */
     public function buy(OrderDataRequest $request)
     {
         $currentStep = intval($request->get('step')) + 1;
         if ($currentStep === GoodBuyingProcessConstant::STEP_BUY_GOOD) {
-            // create order and return redirect link depending on payment method
+            try {
+                $order = $this->orderService->createOrder($request->all());
+                // get current payment handler depending on payment type and payment method
+            } catch (\Exception $e) {
+                // send message to client
+            }
         }
         return response()->json([
             'step' => $currentStep,

@@ -1,5 +1,12 @@
 
 /** MAIN **/
+
+.hidden {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+
 main.wrapper {
     display: flex;
     align-items: center;
@@ -21,6 +28,11 @@ main.wrapper {
     align-items: center;
     flex-direction: column;
 }
+
+.good-modal__body > form {
+    width: 100%;
+}
+
 
 .good-modal__header {
 }
@@ -57,6 +69,12 @@ main.wrapper {
 .inputs-group label {
     font-weight: bold;
     margin-left: 10px;
+}
+
+.inputs-group .error {
+    margin-left: 10px;
+    font-size: 0.7em;
+    color: #ff0000;
 }
 
 .inputs-group input {
@@ -257,6 +275,10 @@ div.good-wrapper img {
 
 /** MEDIA SECTION **/
 @media all and (max-width: 1024px) {
+    .circle-list {
+        width: unset;
+        height: unset;
+    }
     .circle-list .circle-item {
         position: static;
         transform: unset !important;

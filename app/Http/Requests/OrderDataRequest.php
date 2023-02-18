@@ -36,10 +36,14 @@ class OrderDataRequest extends FormRequest
                 'required',
                 'email',
             ]),
-            'payment' => Rule::when(intval($this->step) === GoodBuyingProcessConstant::STEP_CHOOSE_PAYMENT, [
+            'paymentMethod' => Rule::when(intval($this->step) === GoodBuyingProcessConstant::STEP_CHOOSE_PAYMENT, [
+                'required',
+            ]),
+            'paymentType' => Rule::when(intval($this->step) === GoodBuyingProcessConstant::STEP_CHOOSE_PAYMENT, [
                 'required',
             ]),
             'step' => 'numeric|gt:0|max:' . GoodBuyingProcessConstant::MAX_STEPS,
+            'good_id' => 'integer',
         ];
     }
 

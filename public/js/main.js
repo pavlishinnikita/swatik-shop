@@ -102,8 +102,9 @@ document.addEventListener('click', (e) => {
         return;
     }
 
-    if (e.target.closest('[data-payment]')) {
-        e.target.closest('form[data-form]').querySelector('input[name="payment"]').value = e.target.closest('[data-payment]').dataset.payment;
+    if (e.target.closest('[data-paymentmethod]')) {
+        e.target.closest('form[data-form]').querySelector('input[name="paymentMethod"]').value = e.target.closest('[data-paymentmethod]').dataset.paymentmethod;
+        e.target.closest('form[data-form]').querySelector('input[name="paymentType"]').value = e.target.closest('[data-paymenttype]').dataset.paymenttype;
         e.target.closest('form[data-form]').requestSubmit();
     }
 });

@@ -27,8 +27,10 @@
                     <div class="error"></div>
                 </div>
             </div>
-            <input name="payment" type="hidden" value="">
+            <input name="paymentMethod" type="hidden" value="">
+            <input name="paymentType" type="hidden" value="">
             <input name="step" type="hidden" value="1">
+            <input name="good_id" type="hidden" value="{{$item['id'] ?? 0}}">
             @csrf
         </form>
     </div>

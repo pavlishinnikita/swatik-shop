@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * @package App\Models
@@ -30,5 +31,14 @@ class Good extends Model
     public function category()
     {
         return $this->belongsTo(GoodCategory::class,'id');
+    }
+
+    /**
+     * Good orders relation
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_good');
     }
 }
