@@ -1,6 +1,13 @@
 
 /** MAIN **/
 
+html,
+body {
+    height: 100%;
+}
+body {
+    height: max-content;
+}
 .hidden {
     display: none;
     visibility: hidden;
@@ -10,7 +17,15 @@
 main.wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
+    flex-direction: column;
+}
+
+div.wrapper {
+    width: 100%;
+}
+
+footer {
+    flex: 0 0 auto;
 }
 /** GOODS STYLES **/
 .good-modal {
@@ -43,6 +58,7 @@ main.wrapper {
 
 .good-modal__header h1 {
     margin: 0;
+    text-align: center;
 }
 
 .good-modal__logo {
@@ -90,6 +106,16 @@ main.wrapper {
 .inputs-group .cards {
     display: flex;
     flex-wrap: wrap;
+}
+
+.inputs-group .cards [data-paymentmethod] {
+    list-style: none;
+    flex: 0 0 33%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
 }
 
 .inputs-group .cards img {
@@ -141,6 +167,7 @@ main.wrapper {
 .good-type-name {
     position: absolute;
     left: 5%;
+    bottom: 50%;
     color: #ffffff;
     font-weight: bold;
     font-size: 2em;
@@ -188,7 +215,11 @@ div.good-wrapper img {
 }
     /** HOME STYLES **/
 
-.home-wrapper .goods {
+main.wrapper > .goods {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 150px;
 }
 
 .goods .good-container {
@@ -216,14 +247,13 @@ div.good-wrapper img {
     position: relative;
     width: 500px;
     height: 500px;
-    margin: calc(100px / 2 + 0px);
 }
 
 .circle-list .circle-item {
     position: absolute;
-    top: 50%; left: 50%;
-    margin: calc( -100px / 2 );
-    /*transition: all 2s ease-in-out; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /** MODAL STYLES **/
@@ -235,13 +265,14 @@ div.good-wrapper img {
     height: 100%;
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
 
     visibility: hidden;
     z-index: -1;
     opacity: 0;
     transition: all 0.3s ease-out;
+
+    overflow-y: scroll;
 }
 
 .modal.show {
@@ -257,11 +288,11 @@ div.good-wrapper img {
 }
 
 .modal .overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: inherit;
     background-color: #000;
     opacity: 0.7;
 }
@@ -271,6 +302,7 @@ div.good-wrapper img {
     z-index: 10;
     max-width: 60%;
     border: 50px;
+    margin: auto;
 }
 
 /** MEDIA SECTION **/
@@ -284,9 +316,33 @@ div.good-wrapper img {
         transform: unset !important;
         margin: unset;
     }
+    body {
+        position: absolute;
+    }
+
+    .good-modal__logo {
+        scale: 0.5;
+    }
 }
 
-body{
+@media (max-width: 768px) {
+    .good-modal.good-type .goods > div.good-wrapper {
+        flex: 0 0 100%;
+    }
+    body {
+        position: absolute;
+    }
+
+    .good-modal__logo {
+        scale: 0.5;
+    }
+
+    .good-type-name {
+        bottom: 30%;
+    }
+}
+
+body {
     background-image: url('/images/background.jpg');
     background-size: cover;
     font-family: Infra-black;
@@ -297,30 +353,28 @@ body{
     src: url('/fonts/Infra-Black.ttf');
 }
 
-   a {
+a {
    color: #fff;
    text-decoration: none;
 }
 
-   header{
+header {
    display: flex;
    justify-content: space-between;
    padding: 20px;
    color:#fff;
-
-
 }
-   .header__section{
-       display:flex;
-       align-items: center;
-   }
+.header__section {
+   display:flex;
+   align-items: center;
+}
 
-   .header__item{
-       padding: 10px 15px;
-       font-size: 20px;
-       margin-left: 5px;
-   }
-   .headerlogo{
-       font-weight: bold;
-       font-size: 35px;
-   }
+.header__item {
+   padding: 10px 15px;
+   font-size: 20px;
+   margin-left: 5px;
+}
+.headerlogo {
+   font-weight: bold;
+   font-size: 35px;
+}

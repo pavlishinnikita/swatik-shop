@@ -36,11 +36,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
     //#region init circle list
     document.querySelectorAll('.circle-list').forEach((circleList, index) => {
         let circleItems = circleList.querySelectorAll('.circle-item');
-        let angle = 360-90, angleOffset = 360 / circleItems.length;
+        const arc = 2 * Math.PI * (1 / circleItems.length);
+        const radius = 50;
         for( let i = 0; i < circleItems.length; ++i ) {
             let circle = circleItems[i];
-            circle.style.transform = `rotate(${angle}deg) translate(${circleList.clientWidth / 2}px) rotate(-${angle}deg)`;
-            angle += angleOffset;
+            const angle = i * arc;
+            const x = radius * Math.cos(angle);
+            const y = radius * Math.sin(angle);
+            circle.style.left = `${50 + x}%`;
+            circle.style.top = `${50 + y}%`;
         }
     });
     //#endregion

@@ -2,9 +2,9 @@
 use App\Models\Good;
 ?>
 <div class="good-modal__logo full">
+    <div class="good-type-name">{{ $item['name'] ?? '' }}</div>
     <img src="/images/pay-window/goods_logo.png" alt="">
 </div>
-<div class="good-type-name">{{ $item['name'] ?? '' }}</div>
 <div class="good-modal good-type">
     <div class="good-modal__header"></div>
     <div class="good-modal__body">

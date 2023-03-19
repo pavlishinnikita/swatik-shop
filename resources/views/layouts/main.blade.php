@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{config('app.appName')}}</title>
-    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="//fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -14,13 +14,12 @@
     <link rel="shortcut icon" href="/images/favicon.ico">
 </head>
 <body>
-
     @include('_partials/header')
-
     <main class="wrapper">
         @yield('content')
     </main>
-
+    <footer>
+    </footer>
 </body>
 </html>
 
