@@ -1,0 +1,23 @@
+goods:
+  - 
+      id: 1
+      name: 'привилегии'      
+      image: 'путь\к\картинке'      
+      price: '777'
+      type: 'обычный или привелегия или кейс' 
+      category_id: 1
+
+
+new_goods:
+  - 
+      name: 'Имя товара'
+      image: 'https://i.pinimg.com/236x/f3/fe/1d/f3fe1dd69bf54aa4822e9aab096afc62.jpg'  
+      price: '777'
+      type: "'кейс'" 
+      category_id: 1
+  - 
+      name: 'Имя товара'
+      image: 'путь\к\картинке'  
+      price: '777'
+      type: "'кейс'" 
+      category_id: 1
