@@ -6,31 +6,38 @@
  *  - success - success callback
  *  - error - error callback
  */
-function request (settings) {
-    let xhr = new XMLHttpRequest();
+async function request (settings) {
     let url = settings.url || '';
     const method = settings.method || 'GET';
     const success = settings.success || function (response) {};
     const error = settings.error || function (response) {};
-
-    xhr.open(method, url, true);
-    xhr.onload = function () {
-        if ((xhr.status >= 200 && xhr.status <= 299) || (xhr.status >= 400 && xhr.status <= 499)) {
-            success(this);
+    let response = await new Promise((resolve, reject) => {
+        try {
+            let xhr = new XMLHttpRequest();
+            xhr.open(method, url, true);
+            xhr.send(settings.body ? settings.body : null);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if ((xhr.status >= 200 && xhr.status <= 299) || (xhr.status >= 400 && xhr.status <= 499)) {
+                        success(this);
+                    }
+                    if ((xhr.status >= 500 && xhr.status <= 599)) {
+                        error(this);
+                    }
+                    resolve(true);
+                }
+            };
+        } catch (e) {
+            reject(e.toString());
         }
-        if ((xhr.status >= 500 && xhr.status <= 599)) {
-            error(this);
-        }
-    }
-    xhr.onerror = function () {
-        error(this);
-    }
-    try {
-        xhr.send(settings.body ? settings.body : null);
-    } catch (err) {
-        error(this);
-    }
+    });
 }
+
+const STEP = {
+    STEP_GOOD_DETAILS: 1,
+    STEP_CHOOSE_PAYMENT: 2,
+    STEP_REDIRECT_TO_BUYING: 3,
+};
 
 document.addEventListener("DOMContentLoaded", (event) => {
     //#region init circle list
@@ -81,7 +88,7 @@ document.addEventListener('click', (e) => {
         return;
     }
     //#endregion
-    // #paymentDetailsModal
+
     if (e.target.closest('.good-wrapper')) {
         const params = new URLSearchParams([
             ["type", e.target.closest('.good-wrapper').dataset.type],
@@ -96,7 +103,6 @@ document.addEventListener('click', (e) => {
                 paymentDetailsModal.classList.add('show');
 
                 const goodPayment = document.querySelector('#goodModal');
-                goodPayment.classList.toggle('hide');
                 goodPayment.classList.toggle('show');
             },
             error: function (response) {
@@ -111,13 +117,42 @@ document.addEventListener('click', (e) => {
         e.target.closest('form[data-form]').querySelector('input[name="paymentType"]').value = e.target.closest('[data-paymenttype]').dataset.paymenttype;
         e.target.closest('form[data-form]').requestSubmit();
     }
+
+    if (e.target.closest('[data-back-to]')) {
+        e.preventDefault();
+        const currentStep = Number(document.querySelector("[name=step]").value);
+        var prevStep = document.querySelector("[data-form=good]").querySelector(`[data-step="${currentStep - 1}"]`);
+        if (prevStep != null) {
+            document.querySelector("[data-form=good]").querySelector(`[data-step="${currentStep}"]`).classList.add('hidden');
+            prevStep.classList.remove('hidden');
+            document.querySelector("[name=step]").value = currentStep - 1;
+        } else {
+            var currentGoodCategoryType = document.querySelector("[data-form=good] [name='categoryType']").value;
+            if (currentGoodCategoryType == 1 || currentGoodCategoryType == 2) {
+                document.querySelector("#goodModal").classList.toggle('show');
+            } else {
+                document.querySelector("#paymentDetailsModal").classList.toggle('show');
+                document.querySelector("#goodModal").classList.toggle('show');
+            }
+        }
+        return false;
+    }
+});
+
+document.addEventListener('input', (e) => {
+    if (e.target.id === 'good_count') {
+        var regex = /[0-9]|\./;
+        var pricePerOne = e.target.dataset.priceOne;
+        var count = e.target.value;
+        if(!regex.test(e.target.value) || !regex.test(pricePerOne) ) {
+            pricePerOne = "0";
+            count = "0";
+        }
+        document.querySelector('#total_price').textContent = (Number.parseInt(count) * Number.parseFloat(pricePerOne)) + '';
+    }
 });
 
 document.addEventListener('submit', (e) => {
-    const STEP = {
-        STEP_GOOD_DETAILS: 1,
-        STEP_CHOOSE_PAYMENT: 2,
-    };
     if (e.target.dataset.form !== undefined) {
         e.preventDefault();
         e.stopImmediatePropagation();
@@ -128,14 +163,19 @@ document.addEventListener('submit', (e) => {
             body: formData,
             success: function (response) {
                 const responseData = JSON.parse(response.response);
-                if (responseData.step !== undefined) {
-                    e.target.querySelector('input[name="step"]').value = responseData.step;
+                if (response.status === 200) {
+                    if (responseData.step !== undefined) {
+                        e.target.querySelector('input[name="step"]').value = responseData.step;
+                    }
+                    if (responseData.step === STEP.STEP_CHOOSE_PAYMENT) {
+                        e.target.querySelector("#details-info").classList.toggle('hidden');
+                        e.target.querySelector("#payment-info").classList.toggle('hidden');
+                    }
+                    if (responseData.step === STEP.STEP_REDIRECT_TO_BUYING && responseData.data.pageUrl) {
+                        window.location.href = responseData.data.pageUrl;
+                    }
                 }
-                if (responseData.step === STEP.STEP_CHOOSE_PAYMENT) {
-                    e.target.querySelector("#details-info").classList.toggle('hidden');
-                    e.target.querySelector("#payment-info").classList.toggle('hidden');
-                }
-                //#region process errors
+                //#region process validation errors
                 if (response.status === 422) {
                     for (const field in responseData) {
                         if (e.target.querySelector(`[name="${field}"]`).parentElement.querySelector('.error')) {
@@ -147,6 +187,7 @@ document.addEventListener('submit', (e) => {
                 //#endregion
             },
             error: function (response) {
+                console.error(response);
             },
         });
     }

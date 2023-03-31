@@ -18,6 +18,7 @@ main.wrapper {
     display: flex;
     align-items: center;
     flex-direction: column;
+    min-height: 80vh;
 }
 
 div.wrapper {
@@ -106,6 +107,8 @@ footer {
 .inputs-group .cards {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    max-width: 270px;
 }
 
 .inputs-group .cards [data-paymentmethod] {
@@ -232,6 +235,7 @@ main.wrapper > .goods {
     text-align: center;
     font-size: 2em;
     font-weight: bold;
+    color: #fafafa;
 }
 
 .good-container .good-logo {
@@ -300,7 +304,6 @@ main.wrapper > .goods {
 .modal-wrapper {
     position: relative;
     z-index: 10;
-    max-width: 60%;
     border: 50px;
     margin: auto;
 }
@@ -329,6 +332,11 @@ main.wrapper > .goods {
     .good-modal.good-type .goods > div.good-wrapper {
         flex: 0 0 100%;
     }
+
+    .good-modal.good-type .goods > div.good-wrapper.privilege {
+        flex: 0 0 100%;
+    }
+
     body {
         position: absolute;
     }
@@ -346,8 +354,37 @@ body {
     background-image: url('/images/background.jpg');
     background-size: cover;
     font-family: Infra-black;
+    height: 100vh;
 
 }
+
+/* CONGRATULATION PAGE */
+.congratulations {
+    width: 50%;
+    min-height: inherit;
+    display: flex;
+    align-items: center;
+    /*flex-direction: column;*/
+    text-align: center;
+    color: #fafafa;
+}
+
+.congratulations .congratulation__box {
+
+}
+
+.congratulation__box h1 {
+    font-size: 5em;
+}
+
+.congratulation__box .message_box {
+    font-size: 2em;
+}
+
+.congratulation__box .link_box {
+
+}
+
 @font-face {
     font-family: Infra-black;
     src: url('/fonts/Infra-Black.ttf');
