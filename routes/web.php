@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\GoodController;
+use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [DefaultController::class, 'index']);
+Route::get('/congratulation', [DefaultController::class, 'congratulation']);
 
 Route::get('/good', [GoodController::class, 'good']);
 Route::get('/good-category', [GoodController::class, 'goodCategory']);
 Route::post('/buy-good', [GoodController::class, 'buy']);
+
+Route::get('/mono-hook', [GoodController::class, 'monoWebHook'])->withoutMiddleware([VerifyCsrfToken::class]);
+Route::post('/mono-hook', [GoodController::class, 'monoWebHook'])->withoutMiddleware([VerifyCsrfToken::class]);

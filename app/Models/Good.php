@@ -30,7 +30,7 @@ class Good extends Model
      */
     public function category()
     {
-        return $this->belongsTo(GoodCategory::class,'id');
+        return $this->belongsTo(GoodCategory::class,'good_category_id');
     }
 
     /**

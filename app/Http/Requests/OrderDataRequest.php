@@ -28,21 +28,38 @@ class OrderDataRequest extends FormRequest
     public function rules()
     {
         return [
-            'nickname' => Rule::when(intval($this->step) === GoodBuyingProcessConstant::STEP_GOOD_DETAILS, [
+            'nickname' => Rule::when(in_array(intval($this->step), [
+                GoodBuyingProcessConstant::STEP_GOOD_DETAILS,
+                GoodBuyingProcessConstant::STEP_BUY_GOOD,
+            ]), [
                 'required',
                 'max:16'
             ]),
-            'email' => Rule::when(intval($this->step) === GoodBuyingProcessConstant::STEP_CHOOSE_PAYMENT, [
+            'count' => Rule::when(in_array(intval($this->step), [
+                GoodBuyingProcessConstant::STEP_GOOD_DETAILS,
+                GoodBuyingProcessConstant::STEP_BUY_GOOD,
+                ]), [
+                'numeric'
+            ]),
+            'email' => Rule::when(in_array(intval($this->step), [
+                GoodBuyingProcessConstant::STEP_CHOOSE_PAYMENT,
+                GoodBuyingProcessConstant::STEP_BUY_GOOD,
+                ]), [
                 'required',
                 'email',
             ]),
-            'paymentMethod' => Rule::when(intval($this->step) === GoodBuyingProcessConstant::STEP_CHOOSE_PAYMENT, [
+            'paymentMethod' => Rule::when(in_array(intval($this->step), [
+                GoodBuyingProcessConstant::STEP_CHOOSE_PAYMENT,
+                GoodBuyingProcessConstant::STEP_BUY_GOOD,
+            ]), [
                 'required',
             ]),
-            'paymentType' => Rule::when(intval($this->step) === GoodBuyingProcessConstant::STEP_CHOOSE_PAYMENT, [
+            'paymentType' => Rule::when(in_array(intval($this->step), [
+                GoodBuyingProcessConstant::STEP_CHOOSE_PAYMENT,
+                GoodBuyingProcessConstant::STEP_BUY_GOOD,
+            ]), [
                 'required',
             ]),
-            'step' => 'numeric|gt:0|max:' . GoodBuyingProcessConstant::MAX_STEPS,
             'good_id' => 'integer',
         ];
     }
@@ -58,6 +75,7 @@ class OrderDataRequest extends FormRequest
             'email.required' => 'Имейл обязательное поле',
             'email.email' => 'Имейл имеет неправильный формат',
             'payment.required' => 'Выбор платежной системы обязателен',
+            'count.numeric' => 'Колличество должно быть целым числом',
         ];
     }
 

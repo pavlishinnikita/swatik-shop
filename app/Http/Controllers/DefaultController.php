@@ -7,6 +7,7 @@ use App\Services\GoodService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 /**
  * @package App\Http\Controllers
@@ -33,5 +34,16 @@ class DefaultController extends Controller
     {
         $categories = $this->goodService->getCategories();
         return view('pages.home', ['categories' => $categories]);
+    }
+
+    /**
+     * Congratulation page after buying good
+     *
+     * @package Request $request
+     * @return Application|Factory|View
+     */
+    public function congratulation(Request $request)
+    {
+        return view('pages.congratulation');
     }
 }

@@ -17,7 +17,9 @@ return new class extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('status')->unsigned()->default(Order::STATUS_OPEN);
+            $table->string('invoice_id', 255)->default('');
             $table->json('details');
+            $table->string('failure_reason', 1024)->default('');
             $table->timestamps();
         });
 

@@ -42,13 +42,8 @@ class GoodService
     public function getGoodView(GoodCategory $goodCategory) : string
     {
         $goodCount = count($goodCategory['goods'] ?? []);
-
         if ($goodCategory['type'] == GoodCategory::TYPE_MULTIPLE) {
             return '_partials/good_type_goods';
-        }
-
-        if ($goodCategory['type'] == GoodCategory::TYPE_COUNTABLE) {
-            // return modal for countable type like for buying several count of good
         }
 
         return '_partials/good_details';

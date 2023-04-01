@@ -164,6 +164,9 @@ document.addEventListener('submit', (e) => {
             success: function (response) {
                 const responseData = JSON.parse(response.response);
                 if (response.status === 200) {
+                    if (responseData.error) {
+                        iziToast.error({title: 'Ошибка', message: responseData.error});
+                    }
                     if (responseData.step !== undefined) {
                         e.target.querySelector('input[name="step"]').value = responseData.step;
                     }

@@ -24,7 +24,7 @@ class OrderService
         $order = new Order();
         $order->details = $this->prepareOrderDetails($data);
         $order->saveOrFail();
-        $order->goods()->attach($data['good_id'], ['count' => 1]);
+        $order->goods()->attach($data['good_id'], ['count' => intval($data['count'] ?? 1)]);
         return $order;
     }
 
@@ -41,5 +41,15 @@ class OrderService
         unset($detailsData['good_id']);
 
         return $detailsData;
+    }
+
+    /**
+     * Finds order by invoiceId
+     * @param string $invoiceId - invoice id for searching
+     * @return Order|null
+     */
+    public function getOrderByInvoiceId(string $invoiceId) : ?Order
+    {
+        return Order::query()->with('goods')->where(['invoice_id' => $invoiceId])->get()->first();
     }
 }

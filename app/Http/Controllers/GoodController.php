@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Constants\GoodBuyingProcessConstant;
 use App\Http\Requests\OrderDataRequest;
-use App\Models\Good;
+use App\Models\GoodCategory;
+use App\Models\Order;
 use App\Services\GoodService;
 use App\Services\OrderService;
+use App\Services\Payment\MonoPaymentService;
+use App\Services\Payment\PaymentServiceFactory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Request as RequestAlias;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -45,7 +50,7 @@ class GoodController extends Controller
         if (empty($good)) {
             throw new NotFoundHttpException('There are no goods.');
         }
-        return view('_partials/good_details', ['item' => $good]);
+        return view('_partials/good_details', ['item' => $good, 'goodCategoryType' => $good['category']['type'] ?? GoodCategory::TYPE_SIMPLE]);
     }
 
     /**
@@ -61,11 +66,12 @@ class GoodController extends Controller
             throw new NotFoundHttpException('There are no goods.');
         }
         $view = $this->goodService->getGoodView($categoryWithGood);
+        $goodCategoryType = $categoryWithGood['type'] ?? GoodCategory::TYPE_SIMPLE;
         // if category has only one good get that good
         if (count($categoryWithGood['goods']) === 1) {
             $categoryWithGood = $categoryWithGood['goods'][0];
         }
-        return view($view, ['item' => $categoryWithGood]);
+        return view($view, ['item' => $categoryWithGood, 'goodCategoryType' => $goodCategoryType]);
     }
 
     /**
@@ -79,14 +85,54 @@ class GoodController extends Controller
         $currentStep = intval($request->get('step')) + 1;
         if ($currentStep === GoodBuyingProcessConstant::STEP_BUY_GOOD) {
             try {
-                $order = $this->orderService->createOrder($request->all());
-                // get current payment handler depending on payment type and payment method
+                $requestData = $request->all();
+                $order = $this->orderService->createOrder($requestData);
+                $paymentService = PaymentServiceFactory::build($requestData['paymentMethod'], $requestData['paymentType']);
+                $result = $paymentService->process($order);
             } catch (\Exception $e) {
-                // send message to client
+                return response()->json([
+                    'step' => intval($request->get('step')),
+                    'error' => 'Что-то пошло не так, попробуйте позже.',
+                ]);
             }
         }
         return response()->json([
             'step' => $currentStep,
+            'data' => $result ?? [],
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function monoWebHook(Request $request)
+    {
+        if ($request->method() === RequestAlias::METHOD_POST) {
+            try {
+                $invoiceData = $request->post();
+                if (($invoiceData['status'] ?? '') === MonoPaymentService::INVOICE_STATUS_SUCCESS && empty($invoiceData['failureReason'])) {
+                    Order::query()->where(['invoice_id' => $invoiceData['invoiceId'] ?? ''])->update(['status' => Order::STATUS_PAYED]);
+                } elseif (
+                    in_array($invoiceData['status'] ?? '', [MonoPaymentService::INVOICE_STATUS_FAILTURE, MonoPaymentService::INVOICE_STATUS_EXPIRED]) ||
+                    !empty($invoiceData['failureReason'])
+                ) {
+                    Order::query()
+                        ->where(['invoice_id' => $invoiceData['invoiceId'] ?? ''])
+                        ->update(['status' => Order::STATUS_ERROR, 'failure_reason' => $invoiceData['failureReason'] ?? '']);
+                }
+                return response()->json([
+                    'invoice_id' => $invoiceData['invoiceId'] ?? '',
+                    'status' => $invoiceData['status'] ?? '',
+                    'order' => $this->orderService->getOrderByInvoiceId($invoiceData['invoiceId'] ?? '')
+                ]);
+            } catch (\Exception $e) {
+                // log and notify developers
+            }
+        }
+        return response()->json([
+            'status' => 'OK',
+            'message' => 'Thanks a lot',
         ]);
     }
 }

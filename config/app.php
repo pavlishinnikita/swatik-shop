@@ -30,6 +30,7 @@ return [
 
     'env' => env('APP_ENV', 'production'),
     'appName' => env('APP_NAME', 'AstroSea'),
+    'monoToken' => env('MONO_TOKEN', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -211,6 +212,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'GoodBuyingProcessConstant' => \App\Constants\GoodBuyingProcessConstant::class,
     ])->toArray(),
 
 ];
