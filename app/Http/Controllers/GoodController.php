@@ -120,6 +120,7 @@ class GoodController extends Controller
                     Order::query()
                         ->where(['invoice_id' => $invoiceData['invoiceId'] ?? ''])
                         ->update(['status' => Order::STATUS_ERROR, 'failure_reason' => $invoiceData['failureReason'] ?? '']);
+                    throw new \Exception("Order error: invoice({$invoiceData['invoiceId']}).");
                 }
                 return response()->json([
                     'invoice_id' => $invoiceData['invoiceId'] ?? '',

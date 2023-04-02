@@ -38,7 +38,7 @@ class Order extends Model
      */
     public function goods()
     {
-        return $this->belongsToMany(Good::class, 'order_good');
+        return $this->belongsToMany(Good::class, 'order_good')->using(OrderGood::class);
     }
 
     /**

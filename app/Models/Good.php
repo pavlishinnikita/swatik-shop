@@ -39,6 +39,15 @@ class Good extends Model
      */
     public function orders()
     {
-        return $this->belongsToMany(Order::class, 'order_good');
+        return $this->belongsToMany(Order::class, 'order_good')->using(OrderGood::class);
+    }
+
+    /**
+     * Good command relation
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function command()
+    {
+        return $this->hasOne(GoodCommand::class, 'good_id');
     }
 }

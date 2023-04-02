@@ -1,0 +1,106 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\Order;
+use Illuminate\Database\Eloquent\Collection;
+use Thedudeguy\Rcon;
+
+/**
+ * @package App\Services
+ * @category Services
+ *
+ * class CommandService - service class for working with commands
+ */
+class CommandService
+{
+    const COMMAND_PARAM_REGEXP = "/{[a-z0-9\_\.\#\@\%\&]+}/";
+
+    private $rcon;
+
+    public function __construct()
+    {
+        try {
+            $this->rcon = new Rcon(
+                getenv("RCON_HOST"),
+                getenv("RCON_PORT"),
+                getenv("RCON_PASSWORD"),
+                100
+            );
+        } catch (\Exception $e) {
+            // notify developers about rcon downess
+        }
+    }
+
+    /**
+     * Process running commands for goods
+     * @param array|Collection $goods - items for run command for
+     * @param array $params - params for preparing command
+     * @return array
+     */
+    public function processGoodCommands(array|Collection $goods, array $params) : array
+    {
+        $failedGoodIds = [];
+        foreach ($goods as $good) {
+            $command = $this->prepareCommandWithParams($good['command']['command'] ?? '', $params);
+            if (empty($command)) {
+                continue;
+            }
+            $isSuccess = $this->runCommand($command);
+            if (!$isSuccess) {
+                $failedGoodIds[] = $good['id'] ?? 0;
+            }
+        }
+
+        return $failedGoodIds;
+    }
+
+    /**
+     * Runs specific prepared command via RCON
+     * @param string $command - command to apply
+     * @return bool - status of execution
+     */
+    public function runCommand(string $command) : bool
+    {
+        try {
+            if ($this->rcon->connect()) {
+                $this->rcon->sendCommand($command);
+                $response = $this->rcon->getResponse();
+                // log command running status
+            }
+        } catch (\Exception $e) {
+            // notify developers about rcon false and log wrong action
+            return false;
+        } finally {
+            $this->rcon->disconnect();
+        }
+
+        return true;
+    }
+
+    /**
+     * Prepares command with params
+     * @param string $command - command for preparing
+     * @param array $params - params for the command
+     * @return string - prepared command
+     */
+    protected function prepareCommandWithParams(string $command, array $params) : string
+    {
+        if (empty($command)) {
+            return '';
+        }
+        $matches = [];
+        $preparedCommand = $command;
+        preg_match_all(self::COMMAND_PARAM_REGEXP, $command, $matches);
+        foreach ($matches as $commandParam) {
+            if (array_key_exists(trim($commandParam[0] ?? '', "{}"), $params)) {
+                $preparedCommand = str_replace(
+                    $commandParam[0] ?? '',
+                    $params[trim($commandParam[0] ?? '', "{}")],
+                    $command);
+            }
+        }
+
+        return $preparedCommand;
+    }
+}
