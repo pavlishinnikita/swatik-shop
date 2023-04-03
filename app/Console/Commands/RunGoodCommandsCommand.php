@@ -17,7 +17,7 @@ class RunGoodCommandsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'good-commands:run';
+    protected $signature = 'good-commands:run {--undelivered}';
 
     /**
      * The console command description.
@@ -34,12 +34,12 @@ class RunGoodCommandsCommand extends Command
     public function handle(CommandService $commandService)
     {
         try {
+            $isForUndelivered = $this->option('undelivered');
             $orders = Order::query()
-                ->where(['status' => Order::STATUS_PAYED])
-                ->with(['goods', 'goods.command'])
-                ->whereHas('goods', function($query) {
-                    $query->where('is_delivered', '=', 0);
-                })
+                ->with(['goods' => function($query) {
+                    $query->wherePivot('is_delivered', 0);
+                }])
+                ->where(['status' => $isForUndelivered ? Order::STATUS_CLOSED : Order::STATUS_PAYED])
                 ->get()
                 ->all();
             $failedGoodsIds = [];
