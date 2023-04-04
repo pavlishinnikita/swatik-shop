@@ -1,12 +1,15 @@
 
 /** MAIN **/
 
-html,
-body {
+html {
     height: 100%;
 }
 body {
-    height: max-content;
+    min-width: 100%;
+    min-height: 100%;
+    background-image: url('/images/background.jpg');
+    background-size: cover;
+    font-family: Infra-black;
 }
 .hidden {
     display: none;
@@ -81,6 +84,11 @@ footer {
     flex-direction: column;
     margin-bottom: 10px;
     width: 100%;
+}
+
+.good-modal .inputs-group.email-group {
+    width: 80%;
+    margin: auto;
 }
 
 .inputs-group label {
@@ -348,14 +356,6 @@ main.wrapper > .goods {
     .good-type-name {
         bottom: 30%;
     }
-}
-
-body {
-    background-image: url('/images/background.jpg');
-    background-size: cover;
-    font-family: Infra-black;
-    height: 100vh;
-
 }
 
 /* CONGRATULATION PAGE */

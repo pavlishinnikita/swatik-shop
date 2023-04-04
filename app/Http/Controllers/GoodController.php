@@ -122,11 +122,6 @@ class GoodController extends Controller
                         ->update(['status' => Order::STATUS_ERROR, 'failure_reason' => $invoiceData['failureReason'] ?? '']);
                     throw new \Exception("Order error: invoice({$invoiceData['invoiceId']}).");
                 }
-                return response()->json([
-                    'invoice_id' => $invoiceData['invoiceId'] ?? '',
-                    'status' => $invoiceData['status'] ?? '',
-                    'order' => $this->orderService->getOrderByInvoiceId($invoiceData['invoiceId'] ?? '')
-                ]);
             } catch (\Exception $e) {
                 // log and notify developers
             }
