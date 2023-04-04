@@ -54,11 +54,10 @@ class RunGoodCommandsCommand extends Command
                     $successOrdersIds[] = $order['id'];
                 }
             }
+            if (!empty($failedOrdersIds)) {
+                // notify developers and create log
+            }
             //#region update orders
-            Order::query()
-                ->whereIn('id', $failedOrdersIds)
-                ->where(['status' => Order::STATUS_PAYED])
-                ->update(['status' => Order::STATUS_ERROR]);
             Order::query()
                 ->whereIn('id', $successOrdersIds)
                 ->where(['status' => Order::STATUS_PAYED])
