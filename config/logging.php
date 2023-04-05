@@ -1,8 +1,10 @@
 <?php
 
+use Monolog\Handler\FilterHandler;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
+use Monolog\Handler\TelegramBotHandler;
 
 return [
 
@@ -53,7 +55,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'telegram', 'daily'],
             'ignore_exceptions' => false,
         ],
 
@@ -77,7 +79,14 @@ return [
             'emoji' => ':boom:',
             'level' => env('LOG_LEVEL', 'critical'),
         ],
-
+        "telegram" => [
+            'driver'  => 'monolog',
+            'handler' => FilterHandler::class,
+            'level' => env('LOG_LEVEL', 'debug'),
+            'with' => [
+                'handler' => new TelegramBotHandler(env('TELEGRAM_API_KEY'), env('TELEGRAM_CHANNEL')),
+            ],
+        ],
         'papertrail' => [
             'driver' => 'monolog',
             'level' => env('LOG_LEVEL', 'debug'),

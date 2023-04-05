@@ -28,7 +28,7 @@ class CommandService
                 100
             );
         } catch (\Exception $e) {
-            // notify developers about rcon downess
+            logger()->error('RCON is down:'. $e->getMessage());
         }
     }
 
@@ -69,7 +69,9 @@ class CommandService
                 // log command running status
             }
         } catch (\Exception $e) {
-            // notify developers about rcon false and log wrong action
+            logger()->error('Delivering command error:' . $e->getMessage(), [
+                'command' => $command,
+            ]);
             return false;
         } finally {
             $this->rcon->disconnect();

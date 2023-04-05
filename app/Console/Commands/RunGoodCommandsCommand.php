@@ -55,7 +55,7 @@ class RunGoodCommandsCommand extends Command
                 }
             }
             if (!empty($failedOrdersIds)) {
-                // notify developers and create log
+                logger()->error('There are failed orders:', $failedOrdersIds);
             }
             //#region update orders
             Order::query()
@@ -68,7 +68,7 @@ class RunGoodCommandsCommand extends Command
                 ->update(['is_delivered' => 1]);
             //#endregion
         } catch (\Exception $e) {
-            // notify developers
+            logger()->error('Error during delivering goods:' . $e->getMessage());
             return ConsoleCommand::FAILURE;
         }
         return ConsoleCommand::SUCCESS;

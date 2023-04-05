@@ -123,7 +123,9 @@ class GoodController extends Controller
                     throw new \Exception("Order error: invoice({$invoiceData['invoiceId']}).");
                 }
             } catch (\Exception $e) {
-                // log and notify developers
+                logger()->error('Mono webhook error:' . $e->getMessage(), [
+                    'invoice_id' => $request->post()['invoiceId'] ?? '',
+                ]);
             }
         }
         return response()->json([
