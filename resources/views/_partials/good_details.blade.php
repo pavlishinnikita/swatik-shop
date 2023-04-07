@@ -28,12 +28,12 @@ use App\Constants\GoodBuyingProcessConstant;use App\Models\GoodCategory;
                     </div>
                     <div class="buttons-group">
                         <div class="info hidden">*ввести промкод*</div>
-                        <button>Оплатить <span id="total_price">0</span><span class="currency"></span></button>
+                        <button>Оплатить <span id="total_price">0</span><span class="currency-sign">{!! env('CURRENCY_SIGN') !!}</span></button>
                     </div>
                 <?php else:?>
                     <div class="buttons-group">
                         <div class="info hidden">*ввести промкод*</div>
-                        <button>Оплатить {{$item['price'] ?? ''}}</button>
+                        <button>Оплатить {{$item['price'] ?? ''}} <span class="currency-sign">{!! env('CURRENCY_SIGN') !!}</span> </button>
                     </div>
                 <?php endif;?>
             </div>

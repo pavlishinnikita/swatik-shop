@@ -51,7 +51,7 @@ class MonoPaymentService implements PaymentServiceInterface
         $query = new CreateQuery(
             $totalPrice,
             $merchantPaymentInfo,
-            null,
+            env('CURRENCY_CODE'),
             $redirectPage,
             $webHookPage
         );
