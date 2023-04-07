@@ -132,7 +132,9 @@ document.addEventListener('click', (e) => {
                 document.querySelector("#goodModal").classList.toggle('show');
             } else {
                 document.querySelector("#paymentDetailsModal").classList.toggle('show');
-                document.querySelector("#goodModal").classList.toggle('show');
+                setTimeout(() => {
+                    document.querySelector("#goodModal").classList.toggle('show');
+                }, 100);
             }
         }
         return false;
