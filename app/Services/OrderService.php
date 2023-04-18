@@ -25,6 +25,12 @@ class OrderService
         $order->details = $this->prepareOrderDetails($data);
         $order->saveOrFail();
         $order->goods()->attach($data['good_id'], ['count' => intval($data['count'] ?? 1)]);
+        $totalPrice = 0.0;
+        foreach ($order->goods as $orderGood) {
+            $totalPrice += $orderGood['price'];
+        }
+        $order->price = $totalPrice;
+        $order->save();
         return $order;
     }
 

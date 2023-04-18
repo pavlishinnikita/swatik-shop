@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('invoice_id', 255)->default('');
             $table->json('details');
             $table->string('failure_reason', 1024)->default('');
+            $table->decimal('price')->default(0.0);
             $table->timestamps();
         });
 
