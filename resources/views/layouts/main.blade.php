@@ -19,6 +19,13 @@
         @yield('content')
     </main>
     <footer>
+        <div class="info">
+            © <?= date('Y') ?> {{config('app.appName')}}, Все права защищены
+        </div>
+        <div class="links">
+            <a href="">Политика конфиденциальности</a>
+            <a href="">Соглашение об обработке персональных данных</a>
+        </div>
     </footer>
 </body>
 </html>

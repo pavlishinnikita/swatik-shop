@@ -90,6 +90,7 @@ class GoodController extends Controller
                 $paymentService = PaymentServiceFactory::build($requestData['paymentMethod'], $requestData['paymentType']);
                 $result = $paymentService->process($order);
             } catch (\Exception $e) {
+                logger()->error('Form (Buying step) error:' . $e->getMessage());
                 return response()->json([
                     'step' => intval($request->get('step')),
                     'error' => 'Что-то пошло не так, попробуйте позже.',

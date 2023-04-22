@@ -10,6 +10,9 @@ body {
     background-image: url('/images/background.jpg');
     background-size: cover;
     font-family: Infra-black;
+
+    display: flex;
+    flex-direction: column;
 }
 .hidden {
     display: none;
@@ -22,6 +25,7 @@ main.wrapper {
     align-items: center;
     flex-direction: column;
     min-height: 80vh;
+    flex: 1 0 auto;
 }
 
 div.wrapper {
@@ -29,7 +33,11 @@ div.wrapper {
 }
 
 footer {
+    display: flex;
     flex: 0 0 auto;
+    flex-direction: column;
+    text-align: center;
+    color: #fafafa;
 }
 /** GOODS STYLES **/
 .good-modal {
@@ -299,6 +307,15 @@ main.wrapper > .goods {
     flex-direction: row-reverse;
 }
 
+.modal-header .close-btn {
+    color: white;
+    position: relative;
+    top: 70px;
+    left: -30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 .modal .overlay {
     position: fixed;
     top: 0;
@@ -400,6 +417,7 @@ header {
    justify-content: space-between;
    padding: 20px;
    color:#fff;
+   flex: 0 0 auto;
 }
 .header__section {
    display:flex;

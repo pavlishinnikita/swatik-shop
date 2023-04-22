@@ -10,6 +10,7 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "symfony/yaml": "^6.0",
         "thedudeguy/rcon": "^1.0",
         "vldmr-k/mono-acquiring": "^0.0.5",
         "xpaw/php-source-query-class": "^2.1"

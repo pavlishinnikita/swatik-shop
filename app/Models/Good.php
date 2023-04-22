@@ -17,6 +17,13 @@ class Good extends Model
     protected $table = 'good';
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'image',
+        'type',
+        'price',
+    ];
+
     /**
      * Good type constants
      */
