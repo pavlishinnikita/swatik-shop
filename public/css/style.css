@@ -13,6 +13,7 @@ body {
 
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .hidden {
     display: none;
@@ -38,6 +39,20 @@ footer {
     flex-direction: column;
     text-align: center;
     color: #fafafa;
+    padding: 25px 0;
+    width: 100%;
+    background: linear-gradient(rgba(5, 46, 79, 0.2), rgba(0, 119, 214, 0.3));
+}
+footer .info p {
+    margin: 0;
+    padding: 0;
+}
+footer a {
+    text-decoration: underline;
+    color: rgba(255, 187, 0, 100);
+}
+footer .links a {
+    margin-left: 5px;
 }
 /** GOODS STYLES **/
 .good-modal {
@@ -418,6 +433,7 @@ header {
    padding: 20px;
    color:#fff;
    flex: 0 0 auto;
+    width: 100%;
 }
 .header__section {
    display:flex;

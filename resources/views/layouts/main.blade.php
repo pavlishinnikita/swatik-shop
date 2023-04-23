@@ -20,7 +20,18 @@
     </main>
     <footer>
         <div class="info">
-            © <?= date('Y') ?> {{config('app.appName')}}, Все права защищены
+            <p>
+                Copyright © {{config('app.appName')}} <?= date('Y') ?>. Все права защищены.
+            </p>
+            <p>
+                Сервер никак не относится к Mojang, AB.
+            </p>
+            <p>
+                Для получения дополнительной информации и помощи, обратитесь по адресу
+            </p>
+            <p>
+                <a href="mailto:{{env('MAIL_FROM_BCC_ADDRESS')}}">{{env('MAIL_FROM_BCC_ADDRESS')}}</a>
+            </p>
         </div>
         <div class="links">
             <a href="">Политика конфиденциальности</a>
