@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+use Illuminate\Support\Facades\URL;
+?>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -34,7 +37,7 @@
             </p>
         </div>
         <div class="links">
-            <a href="">Политика конфиденциальности</a>
+            <a href="<?= URL::asset('files/policy.pdf');?>" target="_blank">Политика конфиденциальности</a>
             <a href="">Соглашение об обработке персональных данных</a>
         </div>
     </footer>
