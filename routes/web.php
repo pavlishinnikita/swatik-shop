@@ -25,3 +25,5 @@ Route::post('/buy-good', [GoodController::class, 'buy']);
 
 Route::get('/mono-hook', [GoodController::class, 'monoWebHook'])->withoutMiddleware([VerifyCsrfToken::class]);
 Route::post('/mono-hook', [GoodController::class, 'monoWebHook'])->withoutMiddleware([VerifyCsrfToken::class]);
+
+Route::get('/privacy/pdf', [DefaultController::class, 'privacy']);

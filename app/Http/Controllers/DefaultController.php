@@ -8,6 +8,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * @package App\Http\Controllers
@@ -45,5 +46,16 @@ class DefaultController extends Controller
     public function congratulation(Request $request)
     {
         return view('pages.congratulation');
+    }
+
+    /**
+     * Privacy file
+     *
+     * @return BinaryFileResponse
+     * @package Request $request
+     */
+    public function privacy(Request $request)
+    {
+        return response()->file('files/policy.pdf');
     }
 }

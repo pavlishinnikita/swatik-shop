@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\URL;
             </p>
         </div>
         <div class="links">
-            <a href="<?= URL::asset('files/policy.pdf');?>" target="_blank">Политика конфиденциальности</a>
+            <a href="<?= URL::to('/privacy/pdf');?>" target="_blank">Политика конфиденциальности</a>
             <a href="">Соглашение об обработке персональных данных</a>
         </div>
     </footer>
