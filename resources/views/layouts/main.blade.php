@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\URL;
         @yield('content')
     </main>
     <footer>
+        @section('footer')
         <div class="info">
             <p>
                 Copyright © {{config('app.appName')}} <?= date('Y') ?>. Все права защищены.
@@ -40,6 +41,7 @@ use Illuminate\Support\Facades\URL;
             <a href="<?= URL::to('/privacy/pdf');?>" target="_blank">Политика конфиденциальности</a>
             <a href="">Соглашение об обработке персональных данных</a>
         </div>
+        @show
     </footer>
 </body>
 </html>

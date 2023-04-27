@@ -1,4 +1,5 @@
 <header>
+    @section('header')
     <div class="header__section">
         <div class="header__item headerlogo">
             <a href="/">{{config('app.appName')}}</a>
@@ -15,4 +16,5 @@
         </div>
         <div class="img__paper"><img src="/images/header/paper.png" alt=""></div>
     </div>
+    @show
 </header>
