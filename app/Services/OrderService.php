@@ -27,7 +27,7 @@ class OrderService
         $order->goods()->attach($data['good_id'], ['count' => intval($data['count'] ?? 1)]);
         $totalPrice = 0.0;
         foreach ($order->goods as $orderGood) {
-            $totalPrice += $orderGood['price'];
+            $totalPrice += ($orderGood['price'] * $orderGood['pivot']['count']);
         }
         $order->price = $totalPrice;
         $order->save();
