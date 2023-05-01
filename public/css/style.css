@@ -9,12 +9,17 @@ body {
     min-height: 100%;
     background-image: url('/images/background.jpg');
     background-size: cover;
-    font-family: Infra-black;
+    font-family: MusticaPro;
 
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+.en-text {
+    font-family: Infra-black;
+}
+
 .hidden {
     display: none;
     visibility: hidden;
@@ -420,6 +425,11 @@ main.wrapper > .goods {
 @font-face {
     font-family: Infra-black;
     src: url('/fonts/Infra-Black.ttf');
+}
+
+@font-face {
+    font-family: "MusticaPro";
+    src: url('/fonts/MusticaproSemibold.otf');
 }
 
 a {

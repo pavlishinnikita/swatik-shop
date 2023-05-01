@@ -1,7 +1,7 @@
 <header>
     @section('header')
     <div class="header__section">
-        <div class="header__item headerlogo">
+        <div class="header__item headerlogo en-text">
             <a href="/">{{config('app.appName')}}</a>
         </div>
     </div>

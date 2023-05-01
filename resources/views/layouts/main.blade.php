@@ -21,28 +21,7 @@ use Illuminate\Support\Facades\URL;
     <main class="wrapper">
         @yield('content')
     </main>
-    <footer>
-        @section('footer')
-        <div class="info">
-            <p>
-                Copyright © {{config('app.appName')}} <?= date('Y') ?>. Все права защищены.
-            </p>
-            <p>
-                Сервер никак не относится к Mojang, AB.
-            </p>
-            <p>
-                Для получения дополнительной информации и помощи, обратитесь по адресу
-            </p>
-            <p>
-                <a href="mailto:{{env('MAIL_FROM_BCC_ADDRESS')}}">{{env('MAIL_FROM_BCC_ADDRESS')}}</a>
-            </p>
-        </div>
-        <div class="links">
-            <a href="<?= URL::to('/privacy/pdf');?>" target="_blank">Политика конфиденциальности</a>
-            <a href="">Соглашение об обработке персональных данных</a>
-        </div>
-        @show
-    </footer>
+    @include('_partials/footer')
 </body>
 </html>
 
