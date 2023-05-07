@@ -9,6 +9,7 @@ categories:
         price: 0.00
         type: 'привилегия'
         image: '/images/goods/privileges/ocean.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'lp user {nickname} parent set okean'
       -
@@ -16,6 +17,7 @@ categories:
         price: 0.00
         type: 'привилегия'
         image: '/images/goods/privileges/arial.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'lp user {nickname} parent set arial'
       -
@@ -23,6 +25,7 @@ categories:
         price: 0.00
         type: 'привилегия'
         image: '/images/goods/privileges/bangladesh.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'lp user {nickname} parent set bangladesh'
       -
@@ -30,6 +33,7 @@ categories:
         price: 0.00
         type: 'привилегия'
         image: '/images/goods/privileges/mermaid.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'lp user {nickname} parent set mermaid'
       -
@@ -37,6 +41,7 @@ categories:
         price: 0.00
         type: 'привилегия'
         image: '/images/goods/privileges/afina.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'lp user {nickname} parent set afina'
       -
@@ -44,6 +49,7 @@ categories:
         price: 0.00
         type: 'привилегия'
         image: '/images/goods/privileges/starfish.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'lp user {nickname} parent set starfish'
   -
@@ -56,6 +62,7 @@ categories:
         price: 0.00
         type: 'кейс'
         image: '/images/goods/cases.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'cubelets give {nickname} donate 1'
       -
@@ -63,6 +70,7 @@ categories:
         price: 0.00
         type: 'кейс'
         image: '/images/goods/cases.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'cubelets give {nickname} donate 2'
       -
@@ -70,6 +78,7 @@ categories:
         price: 0.00
         type: 'кейс'
         image: '/images/goods/cases.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'cubelets give {nickname} donate 3'
       -
@@ -77,6 +86,7 @@ categories:
         price: 0.00
         type: 'кейс'
         image: '/images/goods/cases.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'cubelets give {nickname} donate 5'
       -
@@ -84,6 +94,7 @@ categories:
         price: 0.00
         type: 'кейс'
         image: '/images/goods/cases.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'cubelets give {nickname} donate 10'
   - name: 'Разбан'
@@ -95,6 +106,7 @@ categories:
         price: 0.00
         type: 'обычный'
         image: '/images/goods/unban.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'unban {nickname}'
   - name: 'Личный титул'
@@ -106,6 +118,7 @@ categories:
         price: 0.00
         type: 'обычный'
         image: '/images/goods/titul_case.png'
+        description: "<p>Описание товара</p>"
         command:
           command: 'cubelets give {nickname} titul'
   - name: 'Ракушки'

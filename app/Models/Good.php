@@ -20,6 +20,7 @@ class Good extends Model
     protected $fillable = [
         'name',
         'image',
+        'description',
         'type',
         'price',
     ];
@@ -30,6 +31,21 @@ class Good extends Model
     const TYPE_DEFAULT = 1;
     const TYPE_PRIVILEGE = 2;
     const TYPE_CASE = 3;
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        // auto-sets values on creation
+        static::creating(function ($query) {
+            $query->description = $query->description ?? '';
+        });
+    }
 
     /**
      * Good category relation

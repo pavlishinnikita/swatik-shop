@@ -1,3 +1,6 @@
+<?php
+use Illuminate\Support\Facades\URL;
+?>
 <footer>
     @section('footer')
         <div class="info">
@@ -11,7 +14,7 @@
                 Для получения дополнительной информации и помощи, обратитесь по адресу
             </p>
             <p class="en-text">
-                <a href="mailto:{{env('MAIL_FROM_BCC_ADDRESS')}}">{{env('MAIL_FROM_BCC_ADDRESS')}}</a>
+                <a href="mailto:{{env('APP_MAIL_ADDRESS')}}">{{env('APP_MAIL_ADDRESS')}}</a>
             </p>
         </div>
         <div class="links">
