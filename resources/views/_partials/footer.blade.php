@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\URL;
         </div>
         <div class="links">
             <a href="<?= URL::to('/privacy/pdf');?>" target="_blank">Политика конфиденциальности</a>
-            <a href="">Соглашение об обработке персональных данных</a>
+            <a href="" easy-class="show" easy-toggle="#securityPolicyModal">Политика безопасности и возврата</a>
         </div>
     @show
 </footer>

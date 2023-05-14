@@ -12,7 +12,7 @@
         </div>
         <div class="img__vk"><img src="/images/header/vk.png" alt=""></div>
         <div class="header__item headerButton">
-            <a href="#">О товарах</a>
+            <a href="/goods-list" data-load-modal="goodsDetailModal" >О товарах</a>
         </div>
         <div class="img__paper"><img src="/images/header/paper.png" alt=""></div>
     </div>

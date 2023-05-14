@@ -52,13 +52,18 @@ footer .info p {
     margin: 0;
     padding: 0;
 }
-footer a {
+footer a, .security-wrapper a, .panel a {
     text-decoration: underline;
     color: rgba(255, 187, 0, 100);
 }
 footer .links a {
     margin-left: 5px;
 }
+
+.security-wrapper .additional h3 {
+    text-align: center;
+}
+
 /** GOODS STYLES **/
 .good-modal {
     margin: 20px;
@@ -351,6 +356,7 @@ main.wrapper > .goods {
     z-index: 10;
     border: 50px;
     margin: auto;
+    max-width: 50%; /* fix for width */
 }
 
 /** MEDIA SECTION **/
@@ -458,4 +464,51 @@ header {
 .headerlogo {
    font-weight: bold;
    font-size: 35px;
+}
+
+/* GOOD LIST */
+.good-list {
+    padding: 0 20%;
+}
+
+/* ACCORDION STYLES */
+.accordion {
+    background-color: #fafafa;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\02039';
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    transform: rotate(360deg);
+}
+
+.active:after {
+    content: '\02039';
+    transform: rotate(270deg);
+}
+
+.panel {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+.panel span {
+    color: rgb(6, 17, 189);
 }

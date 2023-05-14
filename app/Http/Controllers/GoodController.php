@@ -39,6 +39,20 @@ class GoodController extends Controller
     }
 
     /**
+     * Action for getting goods list page
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function list(Request $request)
+    {
+        $goodCategories = $this->goodService->getCategories() ?? [];
+        if (empty($goodCategories)) {
+            throw new NotFoundHttpException('There are no good categories.');
+        }
+        return view('pages/good/list', ['items' => $goodCategories]);
+    }
+
+    /**
      * Action for getting good page
      * @param Request $request
      * @return Application|Factory|View

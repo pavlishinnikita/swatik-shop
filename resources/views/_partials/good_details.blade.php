@@ -1,5 +1,7 @@
 <?php
-use App\Constants\GoodBuyingProcessConstant;use App\Models\GoodCategory;
+use App\Constants\GoodBuyingProcessConstant;
+use App\Models\Good;
+use App\Models\GoodCategory;
 ?>
 <div class="good-modal__logo">
     <img src="/images/pay-window/earth.png" alt="">
@@ -54,7 +56,7 @@ use App\Constants\GoodBuyingProcessConstant;use App\Models\GoodCategory;
         </form>
     </div>
     <div class="good-modal__footer">
-        <div class="info">После оплаты напишите нам в ВК</div>
+        <div class="info"><?= ($item['type'] ?? '') == Good::TYPE_PRIVILEGE ? 'После оплаты напишите нам в ВК' : ''?></div>
         <div class="info"><a href="" data-back-to="">Назад</a></div>
     </div>
 </div>
