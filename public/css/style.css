@@ -9,8 +9,17 @@ body {
     min-height: 100%;
     background-image: url('/images/background.jpg');
     background-size: cover;
+    font-family: MusticaPro;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.en-text {
     font-family: Infra-black;
 }
+
 .hidden {
     display: none;
     visibility: hidden;
@@ -22,6 +31,7 @@ main.wrapper {
     align-items: center;
     flex-direction: column;
     min-height: 80vh;
+    flex: 1 0 auto;
 }
 
 div.wrapper {
@@ -29,8 +39,31 @@ div.wrapper {
 }
 
 footer {
+    display: flex;
     flex: 0 0 auto;
+    flex-direction: column;
+    text-align: center;
+    color: #fafafa;
+    padding: 25px 0;
+    width: 100%;
+    background: linear-gradient(rgba(5, 46, 79, 0.2), rgba(0, 119, 214, 0.3));
 }
+footer .info p {
+    margin: 0;
+    padding: 0;
+}
+footer a, .security-wrapper a, .panel a {
+    text-decoration: underline;
+    color: rgba(255, 187, 0, 100);
+}
+footer .links a {
+    margin-left: 5px;
+}
+
+.security-wrapper .additional h3 {
+    text-align: center;
+}
+
 /** GOODS STYLES **/
 .good-modal {
     margin: 20px;
@@ -299,6 +332,15 @@ main.wrapper > .goods {
     flex-direction: row-reverse;
 }
 
+.modal-header .close-btn {
+    color: white;
+    position: relative;
+    top: 70px;
+    left: -30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 .modal .overlay {
     position: fixed;
     top: 0;
@@ -314,6 +356,7 @@ main.wrapper > .goods {
     z-index: 10;
     border: 50px;
     margin: auto;
+    max-width: 50%; /* fix for width */
 }
 
 /** MEDIA SECTION **/
@@ -390,6 +433,11 @@ main.wrapper > .goods {
     src: url('/fonts/Infra-Black.ttf');
 }
 
+@font-face {
+    font-family: "MusticaPro";
+    src: url('/fonts/MusticaproSemibold.otf');
+}
+
 a {
    color: #fff;
    text-decoration: none;
@@ -400,6 +448,8 @@ header {
    justify-content: space-between;
    padding: 20px;
    color:#fff;
+   flex: 0 0 auto;
+    width: 100%;
 }
 .header__section {
    display:flex;
@@ -414,4 +464,51 @@ header {
 .headerlogo {
    font-weight: bold;
    font-size: 35px;
+}
+
+/* GOOD LIST */
+.good-list {
+    padding: 0 20%;
+}
+
+/* ACCORDION STYLES */
+.accordion {
+    background-color: #fafafa;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\02039';
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    transform: rotate(360deg);
+}
+
+.active:after {
+    content: '\02039';
+    transform: rotate(270deg);
+}
+
+.panel {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+.panel span {
+    color: rgb(6, 17, 189);
 }

@@ -132,11 +132,44 @@ document.addEventListener('click', (e) => {
                 document.querySelector("#goodModal").classList.toggle('show');
             } else {
                 document.querySelector("#paymentDetailsModal").classList.toggle('show');
-                document.querySelector("#goodModal").classList.toggle('show');
+                setTimeout(() => {
+                    document.querySelector("#goodModal").classList.toggle('show');
+                }, 100);
             }
         }
         return false;
     }
+
+    //#region handle click on open modal link
+    if (e.target.attributes['data-load-modal'] && e.target.attributes['data-load-modal'].value) {
+        e.preventDefault();
+        const modalView = document.querySelector(`#${e.target.attributes['data-load-modal'].value}`);
+        request({
+            method: 'get',
+            url: e.target.href,
+            success: function (response) {
+                modalView.querySelector("[data-modal-body]").innerHTML = response.response;
+                modalView.classList.add('show');
+            },
+            error: function (response) {
+                console.error(response);
+            },
+        });
+        return false;
+    }
+    //#endregion
+
+    //#region accordion handler
+    if (e.target.classList.contains('accordion')) {
+        e.target.classList.toggle("active");
+        var panel = e.target.nextElementSibling;
+        if (panel.style.maxHeight){
+            panel.style.maxHeight = null;
+        } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+    }
+    //#endregion
 });
 
 document.addEventListener('input', (e) => {

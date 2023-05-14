@@ -1,0 +1,134 @@
+categories:
+  -
+    name: 'Привелегии'
+    image: '/images/goods/titul_case.png'
+    type: "множественная"
+    goods:
+      -
+        name: 'OCEAN'
+        price: 0.00
+        type: 'привилегия'
+        image: '/images/goods/privileges/ocean.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'lp user {nickname} parent set okean'
+      -
+        name: 'ARIAL'
+        price: 0.00
+        type: 'привилегия'
+        image: '/images/goods/privileges/arial.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'lp user {nickname} parent set arial'
+      -
+        name: 'BANGLADESH'
+        price: 0.00
+        type: 'привилегия'
+        image: '/images/goods/privileges/bangladesh.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'lp user {nickname} parent set bangladesh'
+      -
+        name: 'MERMAID'
+        price: 0.00
+        type: 'привилегия'
+        image: '/images/goods/privileges/mermaid.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'lp user {nickname} parent set mermaid'
+      -
+        name: 'AFINA'
+        price: 0.00
+        type: 'привилегия'
+        image: '/images/goods/privileges/afina.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'lp user {nickname} parent set afina'
+      -
+        name: 'STARFISH'
+        price: 0.00
+        type: 'привилегия'
+        image: '/images/goods/privileges/starfish.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'lp user {nickname} parent set starfish'
+  -
+    name: 'Кейсы'
+    image: '/images/goods/cases.png'
+    type: "множественная"
+    goods:
+      -
+        name: 'Донат кейс'
+        price: 0.00
+        type: 'кейс'
+        image: '/images/goods/cases.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'cubelets give {nickname} donate 1'
+      -
+        name: '2 Донат кейса'
+        price: 0.00
+        type: 'кейс'
+        image: '/images/goods/cases.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'cubelets give {nickname} donate 2'
+      -
+        name: '3 Донат кейса'
+        price: 0.00
+        type: 'кейс'
+        image: '/images/goods/cases.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'cubelets give {nickname} donate 3'
+      -
+        name: '5 Донат кейсов'
+        price: 0.00
+        type: 'кейс'
+        image: '/images/goods/cases.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'cubelets give {nickname} donate 5'
+      -
+        name: '10 Донат кейсов'
+        price: 0.00
+        type: 'кейс'
+        image: '/images/goods/cases.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'cubelets give {nickname} donate 10'
+  - name: 'Разбан'
+    image: '/images/goods/unban.png'
+    type: "одиночная"
+    goods:
+      -
+        name: 'Разбан'
+        price: 0.00
+        type: 'обычный'
+        image: '/images/goods/unban.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'unban {nickname}'
+  - name: 'Личный титул'
+    image: '/images/goods/titul_case.png'
+    type: "одиночная"
+    goods:
+      -
+        name: 'Личный титул'
+        price: 0.00
+        type: 'обычный'
+        image: '/images/goods/titul_case.png'
+        description: "<p>Описание товара</p>"
+        command:
+          command: 'cubelets give {nickname} titul'
+  - name: 'Ракушки'
+    image: '/images/goods/shells.png'
+    type: "весовая"
+    goods:
+      -
+        name: 'Ракушки'
+        price: 0.00
+        type: 'обычный'
+        image: '/images/goods/shells.png'
+        command:
+          command: 'points give {nickname} {count}'

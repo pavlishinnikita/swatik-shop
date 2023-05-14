@@ -39,6 +39,20 @@ class GoodController extends Controller
     }
 
     /**
+     * Action for getting goods list page
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function list(Request $request)
+    {
+        $goodCategories = $this->goodService->getCategories() ?? [];
+        if (empty($goodCategories)) {
+            throw new NotFoundHttpException('There are no good categories.');
+        }
+        return view('pages/good/list', ['items' => $goodCategories]);
+    }
+
+    /**
      * Action for getting good page
      * @param Request $request
      * @return Application|Factory|View
@@ -90,6 +104,7 @@ class GoodController extends Controller
                 $paymentService = PaymentServiceFactory::build($requestData['paymentMethod'], $requestData['paymentType']);
                 $result = $paymentService->process($order);
             } catch (\Exception $e) {
+                logger()->error('Form (Buying step) error:' . $e->getMessage());
                 return response()->json([
                     'step' => intval($request->get('step')),
                     'error' => 'Что-то пошло не так, попробуйте позже.',
@@ -123,7 +138,9 @@ class GoodController extends Controller
                     throw new \Exception("Order error: invoice({$invoiceData['invoiceId']}).");
                 }
             } catch (\Exception $e) {
-                // log and notify developers
+                logger()->error('Mono webhook error:' . $e->getMessage(), [
+                    'invoice_id' => $request->post()['invoiceId'] ?? '',
+                ]);
             }
         }
         return response()->json([

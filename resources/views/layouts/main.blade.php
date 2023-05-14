@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+use Illuminate\Support\Facades\URL;
+?>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -17,9 +20,10 @@
     @include('_partials/header')
     <main class="wrapper">
         @yield('content')
+        @include('_partials/modal', ['id' => "securityPolicyModal", 'content' => view('_partials/security_policy')])
+        @include('_partials/modal', ['id' => 'goodsDetailModal'])
     </main>
-    <footer>
-    </footer>
+    @include('_partials/footer')
 </body>
 </html>
 

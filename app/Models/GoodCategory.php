@@ -16,6 +16,11 @@ class GoodCategory extends Model
     protected $table = 'good_category';
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'image',
+        'type',
+    ];
     /**
      * Good category type constants
      */
