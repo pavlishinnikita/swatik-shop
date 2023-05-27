@@ -1,7 +1,7 @@
 categories:
   -
     name: 'Привелегии'
-    image: '/images/goods/titul_case.png'
+    image: '/images/goods/privilege.png'
     type: "множественная"
     goods:
       -
@@ -13,13 +13,13 @@ categories:
         command:
           command: 'lp user {nickname} parent set okean'
       -
-        name: 'ARIAL'
+        name: 'TURTLE'
         price: 0.00
         type: 'привилегия'
         image: '/images/goods/privileges/arial.png'
         description: "<p>Описание товара</p>"
         command:
-          command: 'lp user {nickname} parent set arial'
+          command: 'lp user {nickname} parent set turtle'
       -
         name: 'BANGLADESH'
         price: 0.00
@@ -110,14 +110,14 @@ categories:
         command:
           command: 'unban {nickname}'
   - name: 'Личный титул'
-    image: '/images/goods/titul_case.png'
+    image: '/images/goods/titul.png'
     type: "одиночная"
     goods:
       -
         name: 'Личный титул'
         price: 0.00
         type: 'обычный'
-        image: '/images/goods/titul_case.png'
+        image: '/images/goods/titul.png'
         description: "<p>Описание товара</p>"
         command:
           command: 'cubelets give {nickname} titul'

@@ -143,6 +143,7 @@ footer .links a {
     padding: 15px;
     font-weight: bold;
     background: #666666;
+    font-family: inherit;
 }
 
 .inputs-group .cards {
@@ -194,6 +195,7 @@ footer .links a {
     background: #33cc99;
     color: #ffffff;
     font-weight: bold;
+    font-family: inherit;
 }
 
 #payment-for-ua::after {
@@ -233,9 +235,15 @@ footer .links a {
     background: #333333;
     display: flex;
     flex-direction: column;
-    border-radius: 50px;
+    border-radius: 20px;
     z-index: 3;
     width: 10%;
+
+    transition: scale ease-in-out 0.3s;
+}
+
+.good-modal.good-type .goods > div.good-wrapper:hover {
+    scale: 1.2;
 }
 
 .good-modal.good-type .goods > div.good-wrapper.privilege {
@@ -270,6 +278,11 @@ main.wrapper > .goods {
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: scale ease-in-out 0.3s;
+}
+
+.goods .good-container:hover {
+    scale: 1.2;
 }
 
 .good-container .good-name {
@@ -464,6 +477,36 @@ header {
 .headerlogo {
    font-weight: bold;
    font-size: 35px;
+    text-align: center;
+}
+
+.server-users-container {
+    font-size: 20px;
+}
+
+.server-users-container p {
+    margin: 0;
+}
+
+.server-users-container progress {
+    height: min(10px, 1ex);
+    border-radius: 5px;
+    overflow: hidden;
+    color: #fafafa;
+}
+
+.server-users-container progress::-moz-progress-bar {
+    background: #fafafa;
+    color: #fafafa;
+}
+
+.server-users-container progress::-webkit-progress-value {
+    background: #0611BD;
+}
+
+.server-users-container progress::-webkit-progress-bar, .server-users-container progress::-moz-progress-bar  {
+    background: #fafafa;
+    color: #fafafa;
 }
 
 /* GOOD LIST */

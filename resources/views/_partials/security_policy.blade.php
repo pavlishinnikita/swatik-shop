@@ -16,7 +16,7 @@ use App\Constants\GoodBuyingProcessConstant;use App\Models\Good;use App\Models\G
             <div class="additional">
                 <h3>Дополнительно</h3>
                 <p>
-                    Оплачивая товар на сайте, Пользователь автоматически принимает все (правила проекта) - <a class="" href="//vk.com/topic-218262063_49219601" target="_blank">https://vk.com/topic-218262063_49219601</a> указанные у нас в (группе Вконтакте) - <a href="//vk.com/astrosea" target="_blank">https://vk.com/astrosea</a>
+                    Оплачивая товар на сайте, Пользователь автоматически принимает все <a class="" href="//vk.com/topic-218262063_49219601" target="_blank">правила проекта</a> указанные у нас в <a href="//vk.com/astrosea" target="_blank">группе Вконтакте</a>
                 </p>
             </div>
         </div>

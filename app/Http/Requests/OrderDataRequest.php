@@ -33,7 +33,8 @@ class OrderDataRequest extends FormRequest
                 GoodBuyingProcessConstant::STEP_BUY_GOOD,
             ]), [
                 'required',
-                'max:16'
+                'max:16',
+                'not_regex:/[А-Яа-яЁё ]/u'
             ]),
             'count' => Rule::when(in_array(intval($this->step), [
                 GoodBuyingProcessConstant::STEP_GOOD_DETAILS,
@@ -72,6 +73,7 @@ class OrderDataRequest extends FormRequest
         return [
             'nickname.required' => 'Никнейм обязательное поле',
             'nickname.max' => 'Никнейм максимум 16 символов',
+            'nickname.not_regex' => 'Никнейм содержит недопустимые символы',
             'email.required' => 'Имейл обязательное поле',
             'email.email' => 'Имейл имеет неправильный формат',
             'payment.required' => 'Выбор платежной системы обязателен',

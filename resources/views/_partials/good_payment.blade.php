@@ -15,6 +15,5 @@ use App\Models\Payment;
     <label id="payment-for-ua">Для украинцев</label>
     <div class="cards">
         <div data-paymentMethod="<?= Payment::PAYMENT_METHOD_VISA ?>" data-paymentType="<?= Payment::PAYMENT_TYPE_UA ?>"><img src="/images/pay-window/visa_ua.png" alt=""></div>
-        <div data-paymentMethod="<?= Payment::PAYMENT_METHOD_MC ?>" data-paymentType="<?= Payment::PAYMENT_TYPE_UA ?>"><img src="/images/pay-window/mc_ua.png" alt=""></div>
     </div>
 </div>
