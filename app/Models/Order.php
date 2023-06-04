@@ -20,9 +20,16 @@ class Order extends Model
      * Constants
      */
     const STATUS_OPEN = 1;
-    const STATUS_PAYED= 2;
+    const STATUS_PAYED = 2;
     const STATUS_ERROR = 3;
     const STATUS_CLOSED = 4;
+
+    const STATUSES = [
+        self::STATUS_OPEN => 'Открыт',
+        self::STATUS_PAYED => 'Оплачен. Готов к доставке',
+        self::STATUS_ERROR => 'Ошибка',
+        self::STATUS_CLOSED => 'Закрыт',
+    ];
 
     public $table = 'order';
 
@@ -46,7 +53,7 @@ class Order extends Model
      *
      * @return Attribute
      */
-    protected function details(): Attribute
+    public function details(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => json_decode($value, true),
