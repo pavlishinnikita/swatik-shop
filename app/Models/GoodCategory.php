@@ -28,6 +28,12 @@ class GoodCategory extends Model
     const TYPE_COUNTABLE = 2;
     const TYPE_MULTIPLE = 3;
 
+    const TYPE_LABELS = [
+        self::TYPE_SIMPLE => 'Простая',
+        self::TYPE_COUNTABLE => 'Поштучная',
+        self::TYPE_MULTIPLE => 'С подтоварами',
+    ];
+
     /**
      * Relation for goods
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

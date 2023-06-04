@@ -32,6 +32,12 @@ class Good extends Model
     const TYPE_PRIVILEGE = 2;
     const TYPE_CASE = 3;
 
+    const TYPE_LABELS = [
+        self::TYPE_DEFAULT => 'Обычный',
+        self::TYPE_PRIVILEGE => 'Привелегия',
+        self::TYPE_CASE => 'Кейс',
+    ];
+
     /**
      * The "booting" method of the model.
      *
