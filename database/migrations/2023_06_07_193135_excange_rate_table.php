@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admin_users', function (Blueprint $table) {
+        Schema::create('exchange_rate', function ($table) {
             $table->id();
-            $table->string('email', 255)->default('')->unique('unique_user_email');
-            $table->string('password_hash', 255)->default('');
-            $table->string('remember_token', 100)->nullable();
+            $table->string('base_currency_iso_code', 3)->default('');
+            $table->string('exchange_currency_iso_code', 3)->default('');
+            $table->decimal('exchange_rate')->unsigned()->default(0);
+            $table->boolean('is_default')->default(0);
             $table->timestamps();
+            $table->index(['created_at']);
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_users');
+        Schema::dropIfExists('exchange_rate');
     }
 };

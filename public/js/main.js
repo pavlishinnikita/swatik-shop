@@ -186,6 +186,12 @@ document.addEventListener('input', (e) => {
     }
 });
 
+document.addEventListener('change', (e) => {
+    if (e.target.dataset['changeHandler'] && typeof window[e.target.dataset['changeHandler']] != 'undefined') {
+        window[e.target.dataset['changeHandler']](e.target);
+    }
+});
+
 document.addEventListener('submit', (e) => {
     if (e.target.dataset.form !== undefined) {
         e.preventDefault();
@@ -230,3 +236,11 @@ document.addEventListener('submit', (e) => {
     }
     return false;
 });
+
+/**
+ *
+ * @param $target
+ */
+function subscriptionChange ($target) {
+    document.querySelector(`[data-id="total_price"]`).textContent = $target.dataset.price;
+}

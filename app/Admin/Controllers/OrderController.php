@@ -3,9 +3,12 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\ExchangeRate;
 use App\Models\Good;
 use App\Models\GoodCategory;
 use App\Models\Order;
+use App\Models\Payment;
+use App\Services\ExchangeRate\ExchangeRateBaseService;
 use Carbon\Carbon;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Controllers\Dashboard;
@@ -52,6 +55,9 @@ class OrderController extends AdminController
         });
         $grid->column('failure_reason', 'Причина отказа');
         $grid->column('price', 'Сумма')->sortable();
+        $grid->column('price_exchanged', 'Сумма (с учетом перевода)')->display(function ($price) {
+            return ExchangeRateBaseService::preparePriceWithCurrentCurrency($this->price, ExchangeRate::CURRENCY_UAH);
+        });
         $grid->column('status', 'Статус')->display(function ($status) {
             return Order::STATUSES[$status] ?? 'Неверный статус';
         });
@@ -67,7 +73,7 @@ class OrderController extends AdminController
             $filter->disableIdFilter();
             $filter->equal('invoice_id', '№ инвойса');
             $filter->equal('status', 'Статус')->select(Order::STATUSES);
-            $filter->date('created_at', 'Дата оформления');
+            $filter->between('created_at', 'Дата оформления')->date();
 
         });
         //#endregion

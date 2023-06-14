@@ -1,14 +1,18 @@
 <header>
+    @php
+        use Illuminate\Support\Facades\Redis;
+        $players = json_decode(Redis::get('server_players'), true) ?? ['online' => 0, 'max' => 0];//Session::get('server_players') ?? ['online' => 0, 'max' => 0];
+    @endphp
     @section('header')
     <div class="header__section">
         <div class="header__item headerlogo en-text">
             <a href="/">{{config('app.appName')}}</a>
             <div class="server-users-container">
                 <div>
-                    <progress max="8000" value="4000"></progress>
+                    <progress max="<?=$players['max']?>" value="<?=$players['online']?>"></progress>
                 </div>
                 <p>
-                    <span>4000</span>/<span>8000</span>
+                    <span><?=$players['online']?></span>/<span><?=$players['max']?></span>
                 </p>
             </div>
         </div>

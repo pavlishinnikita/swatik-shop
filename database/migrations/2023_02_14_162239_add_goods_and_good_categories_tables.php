@@ -31,6 +31,8 @@ return new class extends Migration
             $table->tinyInteger('type')->unsigned()->default(Good::TYPE_DEFAULT);
             $table->decimal('price')->unsigned()->default(0);
             $table->timestamps();
+
+            $table->index(['good_category_id'], 'good_category_idx');
         });
     }
 

@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\URL;
     <main class="wrapper">
         @yield('content')
         @include('_partials/modal', ['id' => "securityPolicyModal", 'content' => view('_partials/security_policy')])
+        @include('_partials/modal', ['id' => "contactsModal", 'content' => view('_partials/contacts')])
         @include('_partials/modal', ['id' => 'goodsDetailModal'])
     </main>
     @include('_partials/footer')

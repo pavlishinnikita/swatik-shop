@@ -30,6 +30,8 @@ return new class extends Migration
             $table->bigInteger('good_id')->unsigned();
             $table->integer('count')->unsigned()->default(0);
             $table->tinyInteger('is_delivered')->unsigned()->default(0);
+
+            $table->index(['order_id', 'good_id'], 'order_good_idx');
         });
     }
 

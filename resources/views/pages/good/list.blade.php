@@ -9,47 +9,32 @@ use App\Constants\GoodBuyingProcessConstant;use App\Models\GoodCategory;
         О ТОВАРАХ
     </div>
     <div class="good-modal__body">
-        <div style="display: flex; flex-direction: column;">
-            <button class="accordion">AFINA</button>
+        <div class="goods-list-wrapper">
+            <button class="accordion">OCEAN</button>
             <div class="panel">
                 <h3>Команды:</h3>
                 <ul>
                     <li>
-                       Игроки поблизости <span>/near</span>
+                        Открыть виртуальный верстак <span>/craft</span>
                     </li>
                     <li>
-                        Заглянуть в инвентарь игрока <span>/invsee</span>
-                    </li>
-                    <li>
-                        Ремонт всех предметов в инвентаре <span>/fix</span> all
-                    </li>
-                    <li>
-                        Написать объявление в чат <span>/bc</span>
-                    </li>
-                    <li>
-                        Выдать игроку  мут <span>/tempmute</span>
-                    </li>
-                    <li>
-                        Бесконечная наковальня <span>/anvil</span>
+                        Восполнить голод <span>/feed</span>
                     </li>
                 </ul>
                 <h3>Дополнительно:</h3>
                 <ul>
                     <li>
-                        Точки дома: <span>6</span>
+                        Точки дома: <span>2</span>
                     </li>
                     <li>
-                        Блоков региона: <span>6</span>
+                        Блоков региона: <span>3</span>
                     </li>
                     <li>
-                        Слотов на Аукционе: <span>15</span>
-                    </li>
-                    <li>
-                        Множитель монет <span>1.75x</span>
+                        Слотов на Аукционе: <span>5</span>
                     </li>
                 </ul>
             </div>
-            <button class="accordion">ARIAL</button>
+            <button class="accordion">TURTLE</button>
             <div class="panel">
                 <h3>Команды:</h3>
                 <ul>
@@ -142,27 +127,42 @@ use App\Constants\GoodBuyingProcessConstant;use App\Models\GoodCategory;
                     </li>
                 </ul>
             </div>
-            <button class="accordion">OCEAN</button>
+            <button class="accordion">AFINA</button>
             <div class="panel">
                 <h3>Команды:</h3>
                 <ul>
                     <li>
-                        Открыть виртуальный верстак <span>/craft</span>
+                       Игроки поблизости <span>/near</span>
                     </li>
                     <li>
-                        Восполнить голод <span>/feed</span>
+                        Заглянуть в инвентарь игрока <span>/invsee</span>
+                    </li>
+                    <li>
+                        Ремонт всех предметов в инвентаре <span>/fix all</span>
+                    </li>
+                    <li>
+                        Написать объявление в чат <span>/bc</span>
+                    </li>
+                    <li>
+                        Выдать игроку  мут <span>/tempmute</span>
+                    </li>
+                    <li>
+                        Бесконечная наковальня <span>/anvil</span>
                     </li>
                 </ul>
                 <h3>Дополнительно:</h3>
                 <ul>
                     <li>
-                        Точки дома: <span>2</span>
+                        Точки дома: <span>6</span>
                     </li>
                     <li>
-                        Блоков региона: <span>3</span>
+                        Блоков региона: <span>6</span>
                     </li>
                     <li>
-                        Слотов на Аукционе: <span>5</span>
+                        Слотов на Аукционе: <span>15</span>
+                    </li>
+                    <li>
+                        Множитель монет <span>1.75x</span>
                     </li>
                 </ul>
             </div>
@@ -170,6 +170,9 @@ use App\Constants\GoodBuyingProcessConstant;use App\Models\GoodCategory;
             <div class="panel">
                 <h3>Команды:</h3>
                 <ul>
+                    <li>
+                        Уникальный кит STAR в который входит кирка на эффективность 5, большой приват спавнер и яйцо призыва скелета
+                    </li>
                     <li>
                         Размутить игрока <span>/unmute</span>
                     </li>

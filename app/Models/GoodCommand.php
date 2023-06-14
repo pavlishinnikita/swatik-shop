@@ -18,6 +18,12 @@ class GoodCommand extends Model
         'command',
     ];
 
+    const SUBSCRIBE_SUBCOMMAND_NAME = 'subscribe_subcommand';
+    const SUBSCRIBE_SUBCOMMANDS = [
+        SubscriptionDuration::VALUE_FOREVER => 'set',
+        'others' => 'addtemp',
+    ];
+
     /**
      * Good command good
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

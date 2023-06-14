@@ -36,6 +36,7 @@ class GoodController extends AdminController
         $grid->disableExport();
         $grid->model()->orderBy('id', 'desc');
         $grid->column('id', 'ID')->sortable();
+        $grid->column('label', 'Лейба');
         $grid->column('name', 'Название')->sortable();
         $grid->column('image', 'Картинка')->display(function ($image) {
             return Html::el('img', [
@@ -81,9 +82,13 @@ class GoodController extends AdminController
 
         $show->field('id', 'ID');
         $show->field('name', 'Название');
+        $show->field('label', 'Лейба');
         $show->field('image', 'Картинка')->image();
         $show->field('type', 'Тип');
         $show->field('price','Цена');
+        $show->field('need_human_action','Взаимодействие с менеджером')->as(function ($needHumanAction) {
+            return $needHumanAction ? 'Да' : 'Нет';
+        });
         $show->field('description', 'Описание')->unescape();
         $show->category('Категория', function ($category) {
             $category->id();
@@ -115,8 +120,10 @@ class GoodController extends AdminController
 
         $form->display('id', 'ID');
         $form->text('name', 'Название');
+        $form->text('label', 'Лейба');
         $form->radio('type', __('Type'))->options(Good::TYPE_LABELS)->default(Good::TYPE_DEFAULT)->stacked();
         $form->decimal('price', 'Цена');
+        $form->radio('need_human_action', 'Взаимодействие с менеджером')->options([0 => 'Нет', 1 => 'Да']);
         $form->select('good_category_id', 'Категория')->options($test);
         $form->tmeditor('description')->options(['lang' => 'fr', 'height' => 500]);
 

@@ -20,6 +20,7 @@ class OrderGood extends Pivot
     protected $table = 'order_good';
     protected $fillable = [
         'count',
-        'is_delivered'
+        'is_delivered',
+        'price',
     ];
 }

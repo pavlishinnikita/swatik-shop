@@ -11,9 +11,14 @@ use App\Models\Good;
         <div class="goods">
             @foreach($item['goods'] as $good)
                 <div class="good-wrapper <?= ($good['type'] ?? '') == Good::TYPE_PRIVILEGE ? 'privilege' : ''?>" data-type="{{ $good['type'] ?? ''}}" data-id="{{ $good['id'] ?? '' }}">
+                    @if(isset($good['label']))
+                        <span class="label">{{$good['label']}}</span>
+                    @endif
                     <img src="{{ $good['image'] ?? '' }}" alt="">
                     <span class="good-name <?= ($goodType ?? '') == Good::TYPE_PRIVILEGE ? 'colored' : ''?>">{{ $good['name'] ?? '' }}</span>
-                    <span class="good-price">{{ $good['price'] ?? '' }}</span>
+                        @if($good['subscribeDurations']->isEmpty())
+                            <span class="good-price">{{ $good['price'] ?? '' }}</span>
+                        @endif
                 </div>
             @endforeach
         </div>

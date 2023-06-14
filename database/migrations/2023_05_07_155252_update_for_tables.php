@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('good', function ($table) {
             $table->text('description');
+            $table->string('label', 255)->default('');
         });
     }
 
@@ -25,8 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table) {
+        Schema::table('good', function($table) {
             $table->dropColumn('description');
+            $table->dropColumn('label');
         });
     }
 };

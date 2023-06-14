@@ -31,7 +31,7 @@ class GoodService
      */
     public function getGood(array $conditions = []) : array | Collection
     {
-        return Good::query()->with('category')->where($conditions)->get()->all();
+        return Good::query()->with('category')->with('subscribeDurations')->where($conditions)->get()->all();
     }
 
     /**

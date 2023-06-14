@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\GoodCommand;
 use App\Models\Order;
+use App\Models\SubscriptionDuration;
 use Illuminate\Database\Eloquent\Collection;
 use Thedudeguy\Rcon;
 
@@ -41,6 +43,9 @@ class CommandService
     public function processGoodCommands(array|Collection $goods, array $params) : array
     {
         $failedGoodIds = [];
+        if (array_key_exists('duration', $params)) {
+            $params[GoodCommand::SUBSCRIBE_SUBCOMMAND_NAME] = $params['duration'] === SubscriptionDuration::VALUE_FOREVER ? GoodCommand::SUBSCRIBE_SUBCOMMANDS[SubscriptionDuration::VALUE_FOREVER] : GoodCommand::SUBSCRIBE_SUBCOMMANDS['others'];
+        }
         foreach ($goods as $good) {
             $command = $this->prepareCommandWithParams($good['command']['command'] ?? '', $params);
             if (empty($command)) {
@@ -86,7 +91,7 @@ class CommandService
      * @param array $params - params for the command
      * @return string - prepared command
      */
-    protected function prepareCommandWithParams(string $command, array $params) : string
+    public function prepareCommandWithParams(string $command, array $params) : string
     {
         if (empty($command)) {
             return '';
@@ -94,15 +99,14 @@ class CommandService
         $matches = [];
         $preparedCommand = $command;
         preg_match_all(self::COMMAND_PARAM_REGEXP, $command, $matches);
-        foreach ($matches as $commandParam) {
-            if (array_key_exists(trim($commandParam[0] ?? '', "{}"), $params)) {
+        foreach (($matches[0] ?? []) as $key => $commandParam) {
+            if (array_key_exists(trim($commandParam, "{}"), $params)) {
                 $preparedCommand = str_replace(
-                    $commandParam[0] ?? '',
-                    $params[trim($commandParam[0] ?? '', "{}")],
-                    $command);
+                    $commandParam,
+                    $params[trim($commandParam, "{}")],
+                    $preparedCommand);
             }
         }
-
-        return $preparedCommand;
+        return trim($preparedCommand, ' ');
     }
 }

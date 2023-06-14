@@ -56,10 +56,13 @@ class RunGoodCommandsCommand extends Command
                     $failedOrdersIds[] = $order['id'];
                 } else {
                     $successOrdersIds[] = $order['id'];
+
                     $mailerService->send(
-                        $order['details']['email'],
-                        $order['details']['nickname'],
+                        [$order['details']['email'] => $order['details']['nickname']],
+                        env('MAIL_FROM_ADDRESS'),
+                        env('MAIL_FROM_NAME'),
                         'Спасибо за покупку товара',
+                        [env('MAIL_FROM_BCC_ADDRESS') => env('MAIL_FROM_BCC_NAME')],
                         'mails.order-details',
                         ['order' => $order]
                     );

@@ -33,9 +33,21 @@ use App\Models\GoodCategory;
                         <button>Оплатить <span id="total_price">0</span><span class="currency-sign">{!! env('CURRENCY_SIGN') !!}</span></button>
                     </div>
                 <?php else:?>
+                    <div class="inputs-group">
+                        <div class="radio-group">
+                            @foreach($item['subscribeDurations'] as $key => $subscribeItem)
+                                <input data-change-handler="subscriptionChange" <?= $key == 0 ? 'checked' : ''?> data-price="{{$subscribeItem['pivot']['price']}}" id="duration_{{$key}}" type="radio" value="{{$subscribeItem['value']}}" name="duration">
+                                <label for="duration_{{$key}}">{{$subscribeItem['label']}}</label>
+                            @endforeach
+                        </div>
+                    </div>
                     <div class="buttons-group">
                         <div class="info hidden">*ввести промкод*</div>
-                        <button>Оплатить {{$item['price'] ?? ''}} <span class="currency-sign">{!! env('CURRENCY_SIGN') !!}</span> </button>
+                        @if(empty($item['subscribeDurations']['items']))
+                            <button>Оплатить <span data-id="total_price">{{$item['price']}}</span><span class="currency-sign">{!! env('CURRENCY_SIGN') !!}</span></button>
+                        @else
+                            <button>Оплатить <span data-id="total_price">0</span><span class="currency-sign">{!! env('CURRENCY_SIGN') !!}</span></button>
+                        @endif
                     </div>
                 <?php endif;?>
             </div>
@@ -56,7 +68,7 @@ use App\Models\GoodCategory;
         </form>
     </div>
     <div class="good-modal__footer">
-        <div class="info"><?= ($item['type'] ?? '') == Good::TYPE_PRIVILEGE ? 'После оплаты напишите нам в ВК' : ''?></div>
+        <div class="info"><?= ($item['need_human_action'] ?? 0) == 1 ? 'После оплаты напишите нам в ВК' : ''?></div>
         <div class="info"><a href="" data-back-to="">Назад</a></div>
     </div>
 </div>

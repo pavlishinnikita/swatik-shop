@@ -2,7 +2,9 @@
 
 namespace App\Services\Payment;
 
+use App\Models\ExchangeRate;
 use App\Models\Order;
+use App\Services\ExchangeRate\ExchangeRateBaseService;
 use VldmrK\MonoAcquiring\Api;
 use VldmrK\MonoAcquiring\Config;
 use VldmrK\MonoAcquiring\Query\Invoice\BasketOrder;
@@ -42,16 +44,16 @@ class MonoPaymentService implements PaymentServiceInterface
             getenv("MONO_MERCHANT_ID"),
             "Покупка счастья"
         );
-        foreach ($order->goods()->withPivot(['count'])->get()->all() as $good) {
+        foreach ($order->goods()->withPivot(['count', 'price'])->get()->all() as $good) {
             $merchantPaymentInfo->addBasketOrder(
-                new BasketOrder($good->name, $good->pivot->count, $good->price, str_starts_with($good->image, 'http') ? $good->image : URL::to($good->image))
+                new BasketOrder($good->name, $good->pivot->count, $good->pivot->price, str_starts_with($good->image, 'http') ? $good->image : URL::to($good->image))
             );
-            $totalPrice += ($good->pivot->count) * $good->price;
+            $totalPrice += ($good->pivot->count) * $good->pivot->price;
         }
         $query = new CreateQuery(
-            $totalPrice,
+            ExchangeRateBaseService::preparePriceWithCurrentCurrency($totalPrice, ExchangeRate::CURRENCY_UAH),
             $merchantPaymentInfo,
-            env('CURRENCY_CODE'),
+            ExchangeRate::CURRENCY_UAH,
             $redirectPage,
             $webHookPage
         );

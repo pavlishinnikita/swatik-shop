@@ -7,11 +7,13 @@ use App\Models\GoodCategory;
 use App\Models\GoodCommand;
 use App\Models\Order;
 use App\Models\OrderGood;
+use App\Models\SubscriptionDuration;
 use App\Services\CommandService;
 use App\Services\MailerService;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Command\Command as ConsoleCommand;
 use Symfony\Component\Yaml\Yaml;
 
@@ -41,6 +43,8 @@ class InitAppCommand extends Command
     {
         try {
             $initData = Yaml::parse(file_get_contents(resource_path() . "/yaml/init.yaml"));
+            $subscribePeriods = SubscriptionDuration::query()->get()->all();
+            DB::beginTransaction();
             foreach ($initData['categories'] ?? [] as $category) {
                 //#region good category creation
                 $goodCategory = new GoodCategory();
@@ -69,9 +73,24 @@ class InitAppCommand extends Command
                     $goodCategory->goods()->save($good);
                     $goodCommand = new GoodCommand($goodData['command']);
                     $good->command()->save($goodCommand);
+                    foreach (($goodData['subscriptionDurations'] ?? []) as $subscriptionDurationsData) {
+                        $periodIndex = array_search($subscriptionDurationsData['value'], array_column($subscribePeriods, 'value'));
+                        if ($periodIndex === false) {
+                            continue;
+                        }
+                        $subscribePeriod = $subscribePeriods[$periodIndex];
+                        $good->subscribeDurations()->attach([
+                            $subscribePeriod['id'] => [
+                                'price' => $subscriptionDurationsData['price'],
+                                'entity_type' => 'good'
+                            ]
+                        ]);
+                    }
                 }
             }
+            DB::commit();
         } catch (\Exception $e) {
+            DB::rollBack();
             logger()->error('Error during init application:' . $e->getMessage());
             return ConsoleCommand::FAILURE;
         }

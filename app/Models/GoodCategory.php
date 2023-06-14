@@ -40,6 +40,6 @@ class GoodCategory extends Model
      */
     public function goods()
     {
-        return $this->hasMany(Good::class,'good_category_id');
+        return $this->hasMany(Good::class,'good_category_id')->with('subscribeDurations');
     }
 }

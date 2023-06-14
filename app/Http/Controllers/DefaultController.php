@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExchangeRate;
 use App\Models\Good;
+use App\Services\ExchangeRate\ExchangeRateBaseService;
 use App\Services\GoodService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
@@ -57,5 +61,16 @@ class DefaultController extends Controller
     public function privacy(Request $request)
     {
         return response()->file('files/policy.pdf');
+    }
+
+    /**
+     * Privacy file
+     *
+     * @return BinaryFileResponse
+     * @package Request $request
+     */
+    public function contract(Request $request)
+    {
+        return response()->file('files/contract.pdf');
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Services;
 
 
+use App\Models\Good;
 use App\Models\Order;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @package App\Services
@@ -21,16 +23,39 @@ class OrderService
      */
     public function createOrder(array $data) : Order
     {
-        $order = new Order();
-        $order->details = $this->prepareOrderDetails($data);
-        $order->saveOrFail();
-        $order->goods()->attach($data['good_id'], ['count' => intval($data['count'] ?? 1)]);
-        $totalPrice = 0.0;
-        foreach ($order->goods as $orderGood) {
-            $totalPrice += ($orderGood['price'] * $orderGood['pivot']['count']);
+        DB::beginTransaction();
+        try {
+            $order = new Order();
+            $order->details = $this->prepareOrderDetails($data);
+            $order->saveOrFail();
+            $totalPrice = 0.0;
+
+            $goods = Good::query()
+                ->with('subscribeDurations')
+                ->whereIn('id', is_array($data['good_id']) ? $data['good_id'] : [$data['good_id']])
+                ->get()
+                ->all();
+
+            foreach ($goods as $orderGood) {
+                $periodIndex = array_search($order->details['duration'] ?? '', array_column($orderGood['subscribeDurations']->toArray(), 'value'));
+                if ($periodIndex === false) {
+                    $price = $orderGood['price'];
+                } else {
+                    $price = $orderGood['subscribeDurations'][$periodIndex]['pivot']['price'];
+                }
+                $count = intval($data['count'] ?? 1);
+                $order->goods()->attach($orderGood['id'], [
+                    'count' => $count,
+                    'price' => $price,
+                ]);
+                $totalPrice += ($price * $count);
+            }
+            $order->price = $totalPrice;
+            $order->save();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
         }
-        $order->price = $totalPrice;
-        $order->save();
         return $order;
     }
 
@@ -45,7 +70,6 @@ class OrderService
         unset($detailsData['step']);
         unset($detailsData['_token']);
         unset($detailsData['good_id']);
-
         return $detailsData;
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\traits\Subscribable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -16,6 +17,7 @@ class Good extends Model
 {
     protected $table = 'good';
     use HasFactory;
+    use Subscribable;
 
     protected $fillable = [
         'name',
@@ -23,6 +25,7 @@ class Good extends Model
         'description',
         'type',
         'price',
+        'label'
     ];
 
     /**
@@ -34,7 +37,7 @@ class Good extends Model
 
     const TYPE_LABELS = [
         self::TYPE_DEFAULT => 'Обычный',
-        self::TYPE_PRIVILEGE => 'Привелегия',
+        self::TYPE_PRIVILEGE => 'Привилегия',
         self::TYPE_CASE => 'Кейс',
     ];
 

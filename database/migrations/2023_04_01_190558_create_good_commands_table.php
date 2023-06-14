@@ -18,6 +18,8 @@ return new class extends Migration
             $table->bigInteger('good_id')->unsigned()->default(0);
             $table->string('command', 1024)->default('');
             $table->timestamps();
+
+            $table->index(['good_id'], 'command_good_idx');
         });
     }
 

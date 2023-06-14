@@ -28,3 +28,4 @@ Route::get('/mono-hook', [GoodController::class, 'monoWebHook'])->withoutMiddlew
 Route::post('/mono-hook', [GoodController::class, 'monoWebHook'])->withoutMiddleware([VerifyCsrfToken::class]);
 
 Route::get('/privacy/pdf', [DefaultController::class, 'privacy']);
+Route::get('/contract/pdf', [DefaultController::class, 'contract']);
