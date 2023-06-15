@@ -25,7 +25,8 @@ class Good extends Model
         'description',
         'type',
         'price',
-        'label'
+        'label',
+        'need_human_action',
     ];
 
     /**
@@ -76,10 +77,10 @@ class Good extends Model
 
     /**
      * Good command relation
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function command()
+    public function commands()
     {
-        return $this->hasOne(GoodCommand::class, 'good_id');
+        return $this->hasMany(GoodCommand::class, 'good_id');
     }
 }

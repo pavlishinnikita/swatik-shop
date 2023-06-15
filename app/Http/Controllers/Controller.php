@@ -27,8 +27,8 @@ class Controller extends BaseController
         if (!Redis::exists('server_players')) {
             try {
                 $response = Http::get('https://api.mcsrvstat.us/2/' . env('RCON_HOST'));
-                Redis::set('server_players', json_encode($response->json()['players'] ?? ['online' => 0, 'max' => 0]));
-                Redis::expire('server_players', 60 * 10); // once at 10 minutes
+                Redis::set('server_players', json_encode($response->json()['players'] ?? ['online' => 0, 'max' => env('MAX_PLAYERS')]));
+                Redis::expire('server_players', 60 * 3); // once at 3 minutes
             } catch (\Exception $e) {
                 logger()->error("Error during getting server players info: " . $e->getMessage());
             }

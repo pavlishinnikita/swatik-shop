@@ -71,8 +71,11 @@ class InitAppCommand extends Command
                     $good->fill($goodData);
                     //#endregion
                     $goodCategory->goods()->save($good);
-                    $goodCommand = new GoodCommand($goodData['command']);
-                    $good->command()->save($goodCommand);
+
+                    foreach ($goodData['commands'] ?? [] as $command) {
+                        $good->commands()->save(new GoodCommand($command));
+                    }
+
                     foreach (($goodData['subscriptionDurations'] ?? []) as $subscriptionDurationsData) {
                         $periodIndex = array_search($subscriptionDurationsData['value'], array_column($subscribePeriods, 'value'));
                         if ($periodIndex === false) {

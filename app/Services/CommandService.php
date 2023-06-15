@@ -47,13 +47,15 @@ class CommandService
             $params[GoodCommand::SUBSCRIBE_SUBCOMMAND_NAME] = $params['duration'] === SubscriptionDuration::VALUE_FOREVER ? GoodCommand::SUBSCRIBE_SUBCOMMANDS[SubscriptionDuration::VALUE_FOREVER] : GoodCommand::SUBSCRIBE_SUBCOMMANDS['others'];
         }
         foreach ($goods as $good) {
-            $command = $this->prepareCommandWithParams($good['command']['command'] ?? '', $params);
-            if (empty($command)) {
-                continue;
-            }
-            $isSuccess = $this->runCommand($command);
-            if (!$isSuccess) {
-                $failedGoodIds[] = $good['id'] ?? 0;
+            foreach ($good['commands'] as $command) {
+                $preparedCommand = $this->prepareCommandWithParams($command['command'] ?? '', $params);
+                if (empty($preparedCommand)) {
+                    continue;
+                }
+                $isSuccess = $this->runCommand($preparedCommand);
+                if (!$isSuccess) {
+                    $failedGoodIds[] = $good['id'] ?? 0;
+                }
             }
         }
 

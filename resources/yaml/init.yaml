@@ -11,8 +11,11 @@ categories:
         image: '/images/goods/privileges/ocean.png'
         description: "<p>Описание товара</p>"
         need_human_action: 0
-        command:
-          command: 'lp user {nickname} parent {subscribe_subcommand} ocean {duration}'
+        commands:
+          -
+            command: 'lp user {nickname} clear'
+          -
+            command: 'lp user {nickname} parent {subscribe_subcommand} ocean {duration}'
         subscriptionDurations:
           -
             value: '30d'
@@ -30,8 +33,11 @@ categories:
         image: '/images/goods/privileges/arial.png'
         description: "<p>Описание товара</p>"
         need_human_action: 0
-        command:
-          command: 'lp user {nickname} parent {subscribe_subcommand} turtle {duration}'
+        commands:
+          -
+            command: 'lp user {nickname} clear'
+          -
+            command: 'lp user {nickname} parent {subscribe_subcommand} turtle {duration}'
         subscriptionDurations:
           -
             value: '30d'
@@ -49,8 +55,11 @@ categories:
         image: '/images/goods/privileges/bangladesh.png'
         description: "<p>Описание товара</p>"
         need_human_action: 0
-        command:
-          command: 'lp user {nickname} parent {subscribe_subcommand} bangladesh {duration}'
+        commands:
+          -
+            command: 'lp user {nickname} clear'
+          -
+            command: 'lp user {nickname} parent {subscribe_subcommand} bangladesh {duration}'
         subscriptionDurations:
           -
             value: '30d'
@@ -68,8 +77,11 @@ categories:
         image: '/images/goods/privileges/mermaid.png'
         description: "<p>Описание товара</p>"
         need_human_action: 0
-        command:
-          command: 'lp user {nickname} parent {subscribe_subcommand} mermaid {duration}'
+        commands:
+          -
+            command: 'lp user {nickname} clear'
+          -
+            command: 'lp user {nickname} parent {subscribe_subcommand} mermaid {duration}'
         subscriptionDurations:
           -
             value: '30d'
@@ -87,8 +99,11 @@ categories:
         image: '/images/goods/privileges/afina.png'
         description: "<p>Описание товара</p>"
         need_human_action: 0
-        command:
-          command: 'lp user {nickname} parent {subscribe_subcommand} afina {duration}'
+        commands:
+          -
+            command: 'lp user {nickname} clear'
+          -
+            command: 'lp user {nickname} parent {subscribe_subcommand} afina {duration}'
         subscriptionDurations:
           -
             value: '30d'
@@ -106,8 +121,11 @@ categories:
         image: '/images/goods/privileges/starfish.png'
         description: "<p>Описание товара</p>"
         need_human_action: 0
-        command:
-          command: 'lp user {nickname} parent {subscribe_subcommand} starfish {duration}'
+        commands:
+          -
+            command: 'lp user {nickname} clear'
+          -
+            command: 'lp user {nickname} parent {subscribe_subcommand} starfish {duration}'
         subscriptionDurations:
           -
             value: '30d'
@@ -131,8 +149,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X1'
-        command:
-          command: 'cubelets give {nickname} donate 1'
+        commands:
+          -
+            command: 'cubelets give {nickname} donate 1'
       -
         name: 'Донат кейс'
         price: 169.00
@@ -141,8 +160,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X2'
-        command:
-          command: 'cubelets give {nickname} donate 2'
+        commands:
+          -
+            command: 'cubelets give {nickname} donate 2'
       -
         name: 'Донат кейс'
         price: 219.00
@@ -151,8 +171,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X3'
-        command:
-          command: 'cubelets give {nickname} donate 3'
+        commands:
+          -
+            command: 'cubelets give {nickname} donate 3'
       -
         name: 'Донат кейс'
         price: 329.00
@@ -161,8 +182,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X5'
-        command:
-          command: 'cubelets give {nickname} donate 5'
+        commands:
+          -
+            command: 'cubelets give {nickname} donate 5'
       -
         name: 'Донат кейс'
         price: 529.00
@@ -171,8 +193,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X10'
-        command:
-          command: 'cubelets give {nickname} donate 10'
+        commands:
+          -
+            command: 'cubelets give {nickname} donate 10'
       -
         name: 'Титул кейс'
         price: 19.00
@@ -181,8 +204,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X1'
-        command:
-          command: ''
+        commands:
+          -
+            command: ''
       - name: 'Титул кейс'
         price: 49.00
         type: 'кейс'
@@ -190,8 +214,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X3'
-        command:
-          command: ''
+        commands:
+          -
+            command: ''
       -
         name: 'Титул кейс'
         price: 89.00
@@ -200,8 +225,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X5'
-        command:
-          command: ''
+        commands:
+          -
+            command: ''
       - name: 'Титул кейс'
         price: 139.00
         type: 'кейс'
@@ -209,8 +235,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X8'
-        command:
-          command: ''
+        commands:
+          -
+            command: ''
       - name: 'Титул кейс'
         price: 169.00
         type: 'кейс'
@@ -218,8 +245,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X10'
-        command:
-          command: 'cubelets give {nickname} donate 10'
+        commands:
+          -
+            command: 'cubelets give {nickname} donate 10'
       - name: 'Кейс с монетами'
         price: 19.00
         type: 'кейс'
@@ -227,8 +255,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X1'
-        command:
-          command: '/cubelets give {nickname} money {amount}'
+        commands:
+          -
+            command: 'cubelets give {nickname} money 1'
       - name: 'Кейс с монетами'
         price: 49.00
         type: 'кейс'
@@ -236,8 +265,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X3'
-        command:
-          command: ''
+        commands:
+          -
+            command: ''
       - name: 'Кейс с монетами'
         price: 89.00
         type: 'кейс'
@@ -245,8 +275,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X5'
-        command:
-          command: ''
+        commands:
+          -
+            command: 'cubelets give {nickname} money 5'
       - name: 'Кейс с монетами'
         price: 139.00
         type: 'кейс'
@@ -254,8 +285,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X8'
-        command:
-          command: ''
+        commands:
+          -
+            command: 'cubelets give {nickname} money 8'
       - name: 'Кейс с монетами'
         price: 179.00
         type: 'кейс'
@@ -263,8 +295,9 @@ categories:
         description: "<p>Описание товара</p>"
         need_human_action: 0
         label: 'X10'
-        command:
-          command: ''
+        commands:
+          -
+            command: 'cubelets give {nickname} money 10'
   - name: 'Разбан'
     image: '/images/goods/unban.png'
     type: "одиночная"
@@ -276,8 +309,9 @@ categories:
         image: '/images/goods/unban.png'
         description: "<p>Описание товара</p>"
         need_human_action: 0
-        command:
-          command: 'unban {nickname}'
+        commands:
+          -
+            command: 'unban {nickname}'
   - name: 'Личный титул'
     image: '/images/goods/titul.png'
     type: "одиночная"
@@ -289,8 +323,9 @@ categories:
         image: '/images/goods/titul.png'
         description: "<p>Описание товара</p>"
         need_human_action: 1
-        command:
-          command: 'cubelets give {nickname} titul'
+        commands:
+          -
+            command: 'cubelets give {nickname} titul'
   - name: 'Ракушки'
     image: '/images/goods/shells.png'
     type: "весовая"
@@ -302,5 +337,6 @@ categories:
         image: '/images/goods/shells.png'
         description: "<p>Описание товара</p>"
         need_human_action: 0
-        command:
-          command: 'points give {nickname} {count}'
+        commands:
+          -
+            command: 'points give {nickname} {count}'

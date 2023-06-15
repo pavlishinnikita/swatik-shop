@@ -47,8 +47,19 @@ class GoodController extends AdminController
             return Good::TYPE_LABELS[$type] ?? 'Неверный тип: ' . $type;
         })->sortable();
         $grid->column('price','Цена')->sortable();
+        $grid->subscribeDurations('Доступные подписки')->display(function ($durations, $column) {
+            if(!empty($durations)) {
+                $prices = array_column(array_column($durations, 'pivot'), 'price');
+                $labels = array_column($durations, 'label');
+                return array_combine($labels, $prices);
+            }
+            return '';
+        })->view('admin/table_column');
         $grid->column('category', 'Название категории')->display(function ($category) {
             return "({$category['id']})" . $category['name'];
+        });
+        $grid->column('need_human_action','Взаимодействие с менеджером')->display(function ($needHumanAction) {
+            return $needHumanAction ? 'Да' : 'Нет';
         });
         $grid->column('created_at','Создан')->display(function ($data) {
             return date('Y-m-d h:m:s', strtotime($data));
@@ -97,8 +108,11 @@ class GoodController extends AdminController
                 return GoodCategory::TYPE_LABELS[$type] ?? 'Неверный тип: ' . $type;
             });
         });
-        $show->command('Команда доставки', function ($command) {
-            $command->command('Команда');
+        $show->commands('Команды доставки', function ($command) {
+            $command->resource('/admin/commands/all-commands');
+            $command->id();
+            $command->command();
+            $command->disableExport();
         });
         $show->field('created_at','Создан');
         $show->field('updated_at','Редактирован');
