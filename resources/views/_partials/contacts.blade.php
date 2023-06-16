@@ -11,12 +11,14 @@ use App\Constants\GoodBuyingProcessConstant;use App\Models\Good;use App\Models\G
     <div class="good-modal__body">
         <div class="contacts-wrapper">
             <div class="contact-item">
+                <a href="mailto:{{env('APP_MAIL_ADDRESS')}}"></a>
                 <img src="/images/contacts/gmail.png" alt="Gmail">
-                <p><a href="mailto:{{env('APP_MAIL_ADDRESS')}}">{{env('APP_MAIL_ADDRESS')}}</a></p>
+                <span>{{env('APP_MAIL_ADDRESS')}}</span>
             </div>
             <div class="contact-item">
+                <a href="{{env('APP_VK_LINK')}}"></a>
                 <img src="/images/contacts/vk.png" alt="VK">
-                <p><a href="{{env('APP_VK_LINK')}}">{{env('APP_VK_LINK')}}</a></p>
+                <span>{{str_replace('https://', '', env('APP_VK_LINK'))}}</span>
             </div>
         </div>
     </div>

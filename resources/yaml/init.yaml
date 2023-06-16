@@ -304,7 +304,7 @@ categories:
     goods:
       -
         name: 'Разбан'
-        price: 249.00
+        price: 199.00
         type: 'обычный'
         image: '/images/goods/unban.png'
         description: "<p>Описание товара</p>"

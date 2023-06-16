@@ -1,10 +1,10 @@
 <header>
     @php
         use Illuminate\Support\Facades\Redis;
-        $players = json_decode(Redis::get('server_players'), true) ?? ['online' => 0, 'max' => 0];//Session::get('server_players') ?? ['online' => 0, 'max' => 0];
+        $players = json_decode(Redis::get('server_players'), true) ?? ['online' => 0, 'max' => 0];
     @endphp
     @section('header')
-    <div class="header__section">
+    <div class="header__section with-wine">
         <div class="header__item headerlogo en-text">
             <a href="/">{{config('app.appName')}}</a>
             <div class="server-users-container">

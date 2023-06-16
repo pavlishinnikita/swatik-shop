@@ -171,9 +171,6 @@ use App\Constants\GoodBuyingProcessConstant;use App\Models\GoodCategory;
                 <h3>Команды:</h3>
                 <ul>
                     <li>
-                        Уникальный кит STAR в который входит кирка на эффективность 5, большой приват спавнер и яйцо призыва скелета
-                    </li>
-                    <li>
                         Размутить игрока <span>/unmute</span>
                     </li>
                     <li>
@@ -187,6 +184,9 @@ use App\Constants\GoodBuyingProcessConstant;use App\Models\GoodCategory;
                     </li>
                     <li>
                         Забанить игрока <span>/tempban</span>
+                    </li>
+                    <li>
+                        Уникальный кит STAR в который входит кирка на эффективность 5, большой приват спавнер и яйцо призыва скелета
                     </li>
                 </ul>
                 <h3>Дополнительно:</h3>

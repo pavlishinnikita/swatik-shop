@@ -38,7 +38,7 @@ return new class extends Migration
                 'label' => '90 Д',
             ],
             [
-                'value' => 'unlimit',
+                'value' => '',
                 'label' => '∞',
             ],
         ]);
