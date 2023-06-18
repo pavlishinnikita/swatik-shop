@@ -102,6 +102,9 @@ class GoodController extends Controller
                 $requestData = $request->all();
                 $order = $this->orderService->createOrder($requestData);
                 $paymentService = PaymentServiceFactory::build($requestData['paymentMethod'], $requestData['paymentType']);
+                if (empty($paymentService)) {
+                    throw new \Exception("Empty payment service for method: {$requestData['paymentMethod']} and type: {$requestData['paymentType']}");
+                }
                 $result = $paymentService->process($order);
             } catch (\Exception $e) {
                 logger()->error('Form (Buying step) error:' . $e->getMessage());

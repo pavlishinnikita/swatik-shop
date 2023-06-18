@@ -192,7 +192,7 @@ use App\Constants\GoodBuyingProcessConstant;use App\Models\GoodCategory;
                 <h3>Дополнительно:</h3>
                 <ul>
                     <li>
-                        Возможность заходить на (RED)заполненные(RED) сервера
+                        Возможность заходить на <span class="text-red">заполненные</span> сервера
                     </li>
                     <li>
                         Точки дома: <span>7</span>

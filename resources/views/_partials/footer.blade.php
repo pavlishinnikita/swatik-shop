@@ -6,9 +6,15 @@ use Illuminate\Support\Facades\URL;
         <div class="block-wrapper">
             <div class="footer-block">
                 <div class="cards">
-                    <img src="/images/footer/mc.png" alt="">
-                    <img src="/images/footer/visa.png" alt="">
-                    <img src="/images/footer/mir.png" alt="">
+                    <div class="card_item">
+                        <img src="/images/footer/mc.png" alt="">
+                    </div>
+                    <div class="card_item">
+                        <img src="/images/footer/visa.png" alt="">
+                    </div>
+                    <div class="card_item">
+                        <img src="/images/footer/mir.png" alt="">
+                    </div>
                 </div>
                 <div class="owner-info">
                     <div class="info-item">{{env('OWNER_NAME')}}</div>

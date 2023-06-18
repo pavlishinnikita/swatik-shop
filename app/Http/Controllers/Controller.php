@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Session;
 
 /**
  * @package App\Http\Controllers
@@ -25,8 +26,8 @@ class Controller extends BaseController
     public function callAction($method, $parameters)
     {
         try {
-            $response = Http::get('https://api.mcsrvstat.us/2/' . env('RCON_HOST'));
-            session('server_players', json_encode($response->json()['players'] ?? ['online' => 0, 'max' => env('MAX_PLAYERS')]));
+            $response = Http::get('https://api.mcsrvstat.us/2/' . env('URL_FOR_CHECK_PLAYERS'));
+            Session::put('server_players', ($response->json()['players'] ?? ['online' => 0, 'max' => env('MAX_PLAYERS')]));
         } catch (\Exception $e) {
             logger()->error("Error during getting server players info: " . $e->getMessage());
         }

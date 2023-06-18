@@ -32,6 +32,7 @@ main.wrapper {
     flex-direction: column;
     min-height: 80vh;
     flex: 1 0 auto;
+    margin-bottom: 100px;
 }
 
 div.wrapper {
@@ -77,6 +78,10 @@ footer .block-wrapper {
     justify-content: center;
 }
 
+.footer-block {
+    justify-content: center;
+}
+
 .footer-block .cards {
     display: flex;
     flex-direction: column;
@@ -101,9 +106,14 @@ footer .info p {
     margin: 0;
     padding: 0;
 }
-footer a, .security-wrapper a, .panel a {
+footer a, .panel a {
 
 }
+
+.security-wrapper a {
+    color: #0611BD;
+}
+
 footer .links a {
     margin-left: 5px;
 }
@@ -549,6 +559,19 @@ main.wrapper > .goods {
     .good-type-name {
         bottom: 30%;
     }
+
+    footer .block-wrapper {
+        flex-direction: column;
+    }
+
+    .footer-block:nth-of-type(n) {
+        width:100%;
+    }
+
+    .footer-block {
+        gap: 20px 0;
+    }
+
 }
 
 /* CONGRATULATION PAGE */
@@ -735,4 +758,8 @@ header {
 }
 .panel li {
     max-width: 350px;
+}
+
+.panel span.text-red {
+    color: #ff0000;
 }

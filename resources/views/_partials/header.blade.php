@@ -1,6 +1,6 @@
 <header>
     @php
-        $players = json_decode(session('server_players'), true) ?? ['online' => 0, 'max' => env('MAX_PLAYERS')];
+        $players = session('server_players') ?? ['online' => 0, 'max' => env('MAX_PLAYERS')];
     @endphp
     @section('header')
     <div class="header__section with-wine">
