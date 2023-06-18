@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\URL;
                 </div>
                 <div class="owner-info">
                     <div class="info-item">{{env('OWNER_NAME')}}</div>
-                    <div class="info-item">НОМЕР {{env('OWNER_CARD')}}</div>
+                    <div class="info-item">ЭДРПОУ {{env('OWNER_CARD')}}</div>
+                    <div class="info-item">РНОКПП 2535008314</div>
                 </div>
             </div>
             <div class="footer-block">

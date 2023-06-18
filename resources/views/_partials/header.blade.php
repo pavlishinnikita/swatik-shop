@@ -1,7 +1,6 @@
 <header>
     @php
-        use Illuminate\Support\Facades\Redis;
-        $players = json_decode(Redis::get('server_players'), true) ?? ['online' => 0, 'max' => 0];
+        $players = json_decode(session('server_players'), true) ?? ['online' => 0, 'max' => env('MAX_PLAYERS')];
     @endphp
     @section('header')
     <div class="header__section with-wine">
