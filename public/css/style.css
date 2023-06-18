@@ -221,10 +221,23 @@ footer .links > div {
 .good-modal .inputs-group .radio-group {
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 0 10px;
+    font-size: 12px;
 }
 
 .good-modal .inputs-group .radio-group label {
     text-align: center;
+}
+
+.radio-group .subscribe-item {
+    white-space:nowrap;
+    display: flex;
+    align-items: center;
+}
+
+.radio-group .subscribe-item input[type='radio'] {
+    scale: 1.3;
 }
 
 .inputs-group label {
@@ -394,7 +407,7 @@ main.wrapper > .goods {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 150px;
+    margin-top: 100px;
 }
 
 .goods .good-container {
@@ -588,6 +601,7 @@ header {
    flex: 0 0 auto;
     width: 100%;
 }
+
 .header__section {
    display:flex;
    align-items: center;
@@ -607,7 +621,28 @@ header {
    padding: 10px 15px;
    font-size: 20px;
    margin-left: 5px;
+
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   position: relative;
+
+   transition: scale ease-in-out 0.3s;
 }
+
+.header__item a.link {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.header__item:hover {
+    scale: 1.2;
+}
+
 .headerlogo {
    font-weight: bold;
    font-size: 35px;

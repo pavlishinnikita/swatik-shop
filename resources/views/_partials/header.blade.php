@@ -5,8 +5,8 @@
     @endphp
     @section('header')
     <div class="header__section with-wine">
-        <div class="header__item headerlogo en-text">
-            <a href="/">{{config('app.appName')}}</a>
+        <div class="headerlogo en-text">
+            <a id="header_app_name" data-ip="{{env('RCON_HOST')}}" href="/">{{config('app.appName')}}</a>
             <div class="server-users-container">
                 <div>
                     <progress max="<?=$players['max']?>" value="<?=$players['online']?>"></progress>
@@ -20,13 +20,15 @@
 
     <div class="header__section">
         <div class="header__item headerButton">
-            <a href="{{env('APP_VK_LINK')}}" target="_blank">ГруппаВК</a>
+            <a class="link" href="{{env('APP_VK_LINK')}}" target="_blank"></a>
+            <span>Группа ВК</span>
+            <div class="mi_image"><img src="/images/header/vk.png" alt=""></div>
         </div>
-        <div class="img__vk"><img src="/images/header/vk.png" alt=""></div>
         <div class="header__item headerButton">
-            <a href="/goods-list" data-load-modal="goodsDetailModal" >О товарах</a>
+            <a class="link" href="/goods-list" data-load-modal="goodsDetailModal" ></a>
+            <span>О товарах</span>
+            <div class="mi_image"><img src="/images/header/paper.png" alt=""></div>
         </div>
-        <div class="img__paper"><img src="/images/header/paper.png" alt=""></div>
     </div>
     @show
 </header>

@@ -36,8 +36,10 @@ use App\Models\GoodCategory;
                     <div class="inputs-group">
                         <div class="radio-group">
                             @foreach($item['subscribeDurations'] as $key => $subscribeItem)
-                                <input data-change-handler="subscriptionChange" <?= $key == 0 ? 'checked' : ''?> data-price="{{$subscribeItem['pivot']['price']}}" id="duration_{{$key}}" type="radio" value="{{$subscribeItem['value']}}" name="duration">
-                                <label for="duration_{{$key}}">{{$subscribeItem['label']}}</label>
+                                <div class="subscribe-item">
+                                    <input data-change-handler="subscriptionChange" <?= $key == 0 ? 'checked' : ''?> data-price="{{$subscribeItem['pivot']['price']}}" id="duration_{{$key}}" type="radio" value="{{$subscribeItem['value']}}" name="duration">
+                                    <label for="duration_{{$key}}">{{$subscribeItem['label']}}</label>
+                                </div>
                             @endforeach
                         </div>
                     </div>
