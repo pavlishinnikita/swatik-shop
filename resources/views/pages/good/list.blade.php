@@ -216,6 +216,20 @@ use App\Constants\GoodBuyingProcessConstant;use App\Models\GoodCategory;
             <div class="panel">
                 Cоздание уникального титула с вашими цветами. После покупки обязательно напиши нам в группу <a href="https://vk.com/astrosea">ВК</a>
             </div>
+            <button class="accordion">Кейсы</button>
+            <div class="panel">
+                <ul>
+                    <li>
+                        <span>Донат кейс</span> содержит в себе все привилегии которые продаются на сайте.
+                    </li>
+                    <li>
+                        <span>Титул кейс</span> содержит сезонные титулы которые меняются с каждым вайпом.
+                    </li>
+                    <li>
+                        <span>Кейс с монетами</span>, с него может выпасть игровая валюта в количестве : 500, 1500, 2000, 3000, 5000, 7000
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="good-modal__footer"></div>
