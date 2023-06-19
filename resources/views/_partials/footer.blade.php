@@ -22,7 +22,9 @@ use Illuminate\Support\Facades\URL;
                 </div>
             </div>
             <div class="footer-block">
-                <div class="info">На странице информации о карте вам будет предложено ввести номер карты, имя владельца карты, срок действия карты и трехзначный код безопасности (CVV2 для Visa и CVC2 для MasterCard)</div>
+                <div class="info">
+                    На странице информации о карте вам будет предложено ввести номер карты, имя владельца карты, срок действия карты и трехзначный код безопасности (CVV2 для Visa и CVC2 для MasterCard)
+                </div>
             </div>
             <div class="footer-block">
                 <div class="links">
@@ -36,6 +38,10 @@ use Illuminate\Support\Facades\URL;
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="copyright">
+            <p>AstroSea {{date('Y')}}. Все права защищены. Сервер никак не относится к Mojang, AB. </p>
+            <p>Для получения дополнительной информации и помощи, обратитесь по адресу</p>
         </div>
     @show
 </footer>

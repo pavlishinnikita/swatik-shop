@@ -45,10 +45,10 @@ use App\Models\GoodCategory;
                     </div>
                     <div class="buttons-group">
                         <div class="info hidden">*ввести промкод*</div>
-                        @if(empty($item['subscribeDurations']['items']))
+                        @if($item['subscribeDurations']->isEmpty())
                             <button>Оплатить <span data-id="total_price">{{$item['price']}}</span><span class="currency-sign">{!! env('CURRENCY_SIGN') !!}</span></button>
                         @else
-                            <button>Оплатить <span data-id="total_price">0</span><span class="currency-sign">{!! env('CURRENCY_SIGN') !!}</span></button>
+                            <button>Оплатить <span data-id="total_price">{{$item['subscribeDurations'][0]['pivot']['price']}}</span><span class="currency-sign">{!! env('CURRENCY_SIGN') !!}</span></button>
                         @endif
                     </div>
                 <?php endif;?>

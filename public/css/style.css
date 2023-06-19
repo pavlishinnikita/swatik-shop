@@ -48,6 +48,28 @@ footer {
     padding: 25px 0;
     width: 100%;
     background: linear-gradient(rgb(64,76,90), rgb(47,59,71));
+    overflow-x: hidden;
+}
+
+footer::before {
+    content: '©';
+    width: 100%;
+    text-align: left;
+    margin-left: 25px;
+    position: relative;
+}
+
+footer .copyright {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    width: 50%;
+    align-self: center;
+}
+
+footer .copyright p {
+    margin: 0;
 }
 
 footer .block-wrapper {
