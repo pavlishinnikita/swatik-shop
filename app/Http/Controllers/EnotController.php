@@ -36,16 +36,18 @@ class EnotController extends Controller
         $order = Order::where('id', $order_id)->first();
 
         if($order && $order['status'] == Order::STATUS_OPEN) {
-            $order['_orderSum'] = $order->sum;
-            $order['_orderStatus'] = 'paid';
-            return $order;
+            return [
+                'id' => $order->id,
+                '_orderSum' => $order->price,
+                '_orderStatus' => 'open',
+            ];
         }
 
         return false;
     }
 
     /**
-     * When paymnet is check, you can paid your order
+     * When payment is check, you can paid your order
      *
      * @param Request $request
      * @param $order
@@ -53,6 +55,7 @@ class EnotController extends Controller
      */
     public function paidOrder(Request $request, $order)
     {
+        $order = Order::where('id', $order['id'])->first();
         $order->status = Order::STATUS_PAID;
         $order->save();
         return true;
