@@ -332,7 +332,7 @@ categories:
     goods:
       -
         name: 'Ракушки'
-        price: 2.00
+        price: 0.50
         type: 'обычный'
         image: '/images/goods/shells.png'
         description: "<p>Описание товара</p>"

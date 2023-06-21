@@ -40,7 +40,8 @@ class OrderDataRequest extends FormRequest
                 GoodBuyingProcessConstant::STEP_GOOD_DETAILS,
                 GoodBuyingProcessConstant::STEP_BUY_GOOD,
                 ]), [
-                'numeric'
+                'numeric',
+                'min:20'
             ]),
             'email' => Rule::when(in_array(intval($this->step), [
                 GoodBuyingProcessConstant::STEP_CHOOSE_PAYMENT,
@@ -78,6 +79,7 @@ class OrderDataRequest extends FormRequest
             'email.email' => 'Имейл имеет неправильный формат',
             'payment.required' => 'Выбор платежной системы обязателен',
             'count.numeric' => 'Колличество должно быть целым числом',
+            'count.min' => 'Минимальное колличество для покупки - 20шт',
         ];
     }
 
