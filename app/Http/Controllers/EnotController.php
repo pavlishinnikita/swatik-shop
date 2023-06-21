@@ -34,12 +34,12 @@ class EnotController extends Controller
     public function searchOrder(Request $request, $order_id)
     {
         $order = Order::where('id', $order_id)->first();
-
         if($order && $order['status'] == Order::STATUS_OPEN) {
             return [
                 'id' => $order->id,
                 '_orderSum' => $order->price,
                 '_orderStatus' => 'open',
+                'invoice_number' => $request->post('intid'),
             ];
         }
 
@@ -53,10 +53,11 @@ class EnotController extends Controller
      * @param $order
      * @return bool
      */
-    public function paidOrder(Request $request, $order)
+    public function paidOrder(Request $request, $orderData)
     {
-        $order = Order::where('id', $order['id'])->first();
+        $order = Order::where('id', $orderData['id'])->first();
         $order->status = Order::STATUS_PAID;
+        $order->invoice_number = $orderData['invoice_number'] ?? '';
         $order->save();
         return true;
     }

@@ -35,17 +35,19 @@ use App\Models\GoodCategory;
                 <?php else:?>
                     <div class="inputs-group">
                         <div class="radio-group">
-                            @foreach($item['subscribeDurations'] as $key => $subscribeItem)
-                                <div class="subscribe-item">
-                                    <input data-change-handler="subscriptionChange" <?= $key == 0 ? 'checked' : ''?> data-price="{{$subscribeItem['pivot']['price']}}" id="duration_{{$key}}" type="radio" value="{{$subscribeItem['value']}}" name="duration">
-                                    <label for="duration_{{$key}}">{{$subscribeItem['label']}}</label>
-                                </div>
-                            @endforeach
+                            @if (!empty($item['subscribeDurations']))
+                                @foreach($item['subscribeDurations'] as $key => $subscribeItem)
+                                    <div class="subscribe-item">
+                                        <input data-change-handler="subscriptionChange" <?= $key == 0 ? 'checked' : ''?> data-price="{{$subscribeItem['pivot']['price']}}" id="duration_{{$key}}" type="radio" value="{{$subscribeItem['value']}}" name="duration">
+                                        <label for="duration_{{$key}}">{{$subscribeItem['label']}}</label>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="buttons-group">
                         <div class="info hidden">*ввести промкод*</div>
-                        @if($item['subscribeDurations']->isEmpty())
+                        @if(!empty($item['subscribeDurations']) && $item['subscribeDurations']->isEmpty())
                             <button>Оплатить <span data-id="total_price">{{$item['price']}}</span><span class="currency-sign">{!! env('CURRENCY_SIGN') !!}</span></button>
                         @else
                             <button>Оплатить <span data-id="total_price">{{$item['subscribeDurations'][0]['pivot']['price']}}</span><span class="currency-sign">{!! env('CURRENCY_SIGN') !!}</span></button>
