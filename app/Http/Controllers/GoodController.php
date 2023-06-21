@@ -130,7 +130,7 @@ class GoodController extends Controller
             try {
                 $invoiceData = $request->post();
                 if (($invoiceData['status'] ?? '') === MonoPaymentService::INVOICE_STATUS_SUCCESS && empty($invoiceData['failureReason'])) {
-                    Order::query()->where(['invoice_id' => $invoiceData['invoiceId'] ?? ''])->update(['status' => Order::STATUS_PAYED]);
+                    Order::query()->where(['invoice_id' => $invoiceData['invoiceId'] ?? ''])->update(['status' => Order::STATUS_PAID]);
                 } elseif (
                     in_array($invoiceData['status'] ?? '', [MonoPaymentService::INVOICE_STATUS_FAILTURE, MonoPaymentService::INVOICE_STATUS_EXPIRED]) ||
                     !empty($invoiceData['failureReason'])

@@ -17,6 +17,7 @@
         "symfony/yaml": "^6.0",
         "thedudeguy/rcon": "^1.0",
         "vldmr-k/mono-acquiring": "^0.0.5",
+        "weishaypt/laravel-enot-io": "v4",
         "xpaw/php-source-query-class": "^2.1"
     },
     "require-dev": {

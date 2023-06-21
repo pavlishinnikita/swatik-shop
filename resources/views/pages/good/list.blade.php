@@ -39,7 +39,7 @@ use App\Constants\GoodBuyingProcessConstant;use App\Models\GoodCategory;
                 <h3>Команды:</h3>
                 <ul>
                     <li>
-                        Открыть ткаций станок <span>/loom</span>
+                        Открыть ткацкий станок <span>/loom</span>
                     </li>
                     <li>
                         Восполнение здоровья <span>/heal</span>

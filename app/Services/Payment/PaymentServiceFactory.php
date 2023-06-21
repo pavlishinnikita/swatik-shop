@@ -25,6 +25,8 @@ class PaymentServiceFactory
 
         if ($paymentType === Payment::PAYMENT_TYPE_UA) {
             $service = new MonoPaymentService();
+        } else {
+            $service = new EnotPaymentService();
         }
 
         return $service;

@@ -53,6 +53,17 @@ class DefaultController extends Controller
     }
 
     /**
+     * Error page after buying good
+     *
+     * @package Request $request
+     * @return Application|Factory|View
+     */
+    public function error(Request $request)
+    {
+        return view('pages.error');
+    }
+
+    /**
      * Privacy file
      *
      * @return BinaryFileResponse

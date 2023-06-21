@@ -43,7 +43,8 @@ class RunGoodCommandsCommand extends Command
                 ->with(['goods' => function($query) {
                     $query->wherePivot('is_delivered', 0);
                 }])
-                ->where(['status' => $isForUndelivered ? Order::STATUS_CLOSED : Order::STATUS_PAYED])
+                ->where(['status' => $isForUndelivered ? Order::STATUS_CLOSED : Order::STATUS_PAID])
+                ->limit(10)
                 ->get()
                 ->all();
             $failedGoodsIds = [];
@@ -74,7 +75,7 @@ class RunGoodCommandsCommand extends Command
             //#region update orders
             Order::query()
                 ->whereIn('id', $successOrdersIds)
-                ->where(['status' => Order::STATUS_PAYED])
+                ->where(['status' => Order::STATUS_PAID])
                 ->update(['status' => Order::STATUS_CLOSED]);
             OrderGood::query()
                 ->whereNotIn('good_id', Arr::flatten($failedGoodsIds, 1))

@@ -196,6 +196,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Weishaypt\EnotIo\EnotIoServiceProvider::class,
 
     ],
 
@@ -213,6 +214,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'GoodBuyingProcessConstant' => \App\Constants\GoodBuyingProcessConstant::class,
+        'EnotIo' => Weishaypt\EnotIo\Facades\EnotIo::class,
     ])->toArray(),
 
 ];

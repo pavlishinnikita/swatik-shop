@@ -20,13 +20,13 @@ class Order extends Model
      * Constants
      */
     const STATUS_OPEN = 1;
-    const STATUS_PAYED = 2;
+    const STATUS_PAID = 2;
     const STATUS_ERROR = 3;
     const STATUS_CLOSED = 4;
 
     const STATUSES = [
         self::STATUS_OPEN => 'Открыт',
-        self::STATUS_PAYED => 'Оплачен. Готов к доставке',
+        self::STATUS_PAID => 'Оплачен. Готов к доставке',
         self::STATUS_ERROR => 'Ошибка',
         self::STATUS_CLOSED => 'Закрыт',
     ];
