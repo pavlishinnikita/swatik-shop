@@ -57,7 +57,7 @@ class EnotController extends Controller
     {
         $order = Order::where('id', $order['id'])->first();
         $order->status = Order::STATUS_PAID;
-        $order->invoice_number = $orderData['invoice_number'] ?? '';
+        $order->invoice_id = $orderData['invoice_number'] ?? '';
         $order->save();
         return true;
     }
