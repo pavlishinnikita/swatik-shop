@@ -53,9 +53,9 @@ class EnotController extends Controller
      * @param $order
      * @return bool
      */
-    public function paidOrder(Request $request, $orderData)
+    public function paidOrder(Request $request, $order)
     {
-        $order = Order::where('id', $orderData['id'])->first();
+        $order = Order::where('id', $order['id'])->first();
         $order->status = Order::STATUS_PAID;
         $order->invoice_number = $orderData['invoice_number'] ?? '';
         $order->save();
