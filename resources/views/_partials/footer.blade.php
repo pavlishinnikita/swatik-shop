@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\URL;
             </div>
         </div>
         <div class="copyright">
-            <p>AstroSea {{date('Y')}}. Все права защищены. Сервер никак не относится к Mojang, AB. </p>
+            <p>AstroSea {{date('Y')}}. Все права защищены.</p>
             <p>Для получения дополнительной информации и помощи, обратитесь по адресу</p>
         </div>
     @show

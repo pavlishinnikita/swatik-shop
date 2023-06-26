@@ -45,7 +45,10 @@ class EnotPaymentService implements PaymentServiceInterface
      * @return string
      */
     protected function preparePaymentType ($paymentMethod) {
-        return match ($paymentMethod) {
+        if (!is_numeric($paymentMethod)) {
+            return 'cd';
+        }
+        return match ((int)$paymentMethod) {
             Payment::PAYMENT_METHOD_QIWI => 'qw',
             Payment::PAYMENT_METHOD_IO => 'ya',
             default => 'cd'

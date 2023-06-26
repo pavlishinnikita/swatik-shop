@@ -206,7 +206,7 @@ categories:
         label: 'X1'
         commands:
           -
-            command: ''
+            command: 'cubelets give {nickname} titul 1'
       - name: 'Титул кейс'
         price: 49.00
         type: 'кейс'
@@ -216,7 +216,7 @@ categories:
         label: 'X3'
         commands:
           -
-            command: ''
+            command: 'cubelets give {nickname} titul 3'
       -
         name: 'Титул кейс'
         price: 89.00
@@ -227,7 +227,7 @@ categories:
         label: 'X5'
         commands:
           -
-            command: ''
+            command: 'cubelets give {nickname} titul 5'
       - name: 'Титул кейс'
         price: 139.00
         type: 'кейс'
@@ -237,7 +237,7 @@ categories:
         label: 'X8'
         commands:
           -
-            command: ''
+            command: 'cubelets give {nickname} titul 8'
       - name: 'Титул кейс'
         price: 169.00
         type: 'кейс'
@@ -267,7 +267,7 @@ categories:
         label: 'X3'
         commands:
           -
-            command: ''
+            command: 'cubelets give {nickname} money 1'
       - name: 'Кейс с монетами'
         price: 89.00
         type: 'кейс'
@@ -311,7 +311,7 @@ categories:
         need_human_action: 0
         commands:
           -
-            command: 'unban {nickname}'
+            command: 'unban {nickname} -s'
   - name: 'Личный титул'
     image: '/images/goods/titul.png'
     type: "одиночная"

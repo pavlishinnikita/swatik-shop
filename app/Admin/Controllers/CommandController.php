@@ -38,7 +38,7 @@ class CommandController extends AdminController
         $grid->model()->orderBy('id', 'desc');
         $grid->column('id', 'ID')->sortable();
         $grid->good('Товар')->display(function ($good) {
-            return '(' . $good['id'] . ') ' . $good['name'];
+            return '(' . $good['id'] . ') ' . $good['name'] . ' ' . $good['label'];
         });
         $grid->column('command', 'Команда')->sortable();
 

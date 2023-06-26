@@ -73,7 +73,7 @@ class OrderController extends AdminController
             $filter->disableIdFilter();
             $filter->equal('invoice_id', '№ инвойса');
             $filter->equal('status', 'Статус')->select(Order::STATUSES);
-            $filter->between('created_at', 'Дата оформления')->date();
+            $filter->between('created_at', 'Дата оформления')->datetime();
 
         });
         //#endregion
