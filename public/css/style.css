@@ -561,7 +561,7 @@ main.wrapper > .goods {
     }
 }
 
-@media (max-width: 768px) {
+@media all and (max-width: 768px) {
     .good-modal.good-type .goods > div.good-wrapper {
         flex: 0 0 100%;
     }
@@ -594,6 +594,10 @@ main.wrapper > .goods {
         gap: 20px 0;
     }
 
+
+    .goods-list-wrapper .accordion {
+        width: 100%;
+    }
 }
 
 /* CONGRATULATION PAGE */

@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Order\Pay;
 use App\Http\Controllers\Controller;
 use App\Models\ExchangeRate;
 use App\Models\Good;
@@ -78,9 +79,10 @@ class OrderController extends AdminController
         });
         //#endregion
         // region prepare row actions
-        $grid->actions(function (DropdownActions $actions) {
+        $grid->actions(function (DropdownActions $actions) use ($grid) {
             $actions->disableDelete();
             $actions->disableEdit();
+            $actions->add(new Pay());
         });
         //#endregion
         return $grid;

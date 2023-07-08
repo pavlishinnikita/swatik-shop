@@ -16,5 +16,5 @@ Route::group([
     $router->resource('/good/all-goods', 'GoodController');
     $router->resource('/commands/all-commands', 'CommandController');
     $router->resource('/order/all-orders', 'OrderController');
-
+    $router->resource('/subscriptions', 'SubscriptionDurationController');
 });

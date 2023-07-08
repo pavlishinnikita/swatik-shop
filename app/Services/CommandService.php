@@ -44,7 +44,7 @@ class CommandService
     {
         $failedGoodIds = [];
         if (array_key_exists('duration', $params)) {
-            $params[GoodCommand::SUBSCRIBE_SUBCOMMAND_NAME] = $params['duration'] === SubscriptionDuration::VALUE_FOREVER ? GoodCommand::SUBSCRIBE_SUBCOMMANDS[SubscriptionDuration::VALUE_FOREVER] : GoodCommand::SUBSCRIBE_SUBCOMMANDS['others'];
+            $params[GoodCommand::SUBSCRIBE_SUBCOMMAND_NAME] = ($params['duration'] ?? '') === SubscriptionDuration::VALUE_FOREVER ? GoodCommand::SUBSCRIBE_SUBCOMMANDS[SubscriptionDuration::VALUE_FOREVER] : GoodCommand::SUBSCRIBE_SUBCOMMANDS['others'];
         }
         foreach ($goods as $good) {
             foreach ($good['commands'] as $command) {

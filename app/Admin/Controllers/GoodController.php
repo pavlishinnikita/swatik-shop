@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Good;
 use App\Models\GoodCategory;
+use App\Models\SubscriptionDuration;
 use Carbon\Carbon;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Controllers\Dashboard;
@@ -127,7 +128,7 @@ class GoodController extends AdminController
      */
     protected function form()
     {
-        $test = GoodCategory::query()->get(['id', 'name'])->mapWithKeys(function ($item) {
+        $category = GoodCategory::query()->get(['id', 'name'])->mapWithKeys(function ($item) {
             return [$item['id'] => "({$item['id']}){$item['name']}"];
         })->all();
         $form = new Form(new Good);
@@ -138,8 +139,12 @@ class GoodController extends AdminController
         $form->radio('type', __('Type'))->options(Good::TYPE_LABELS)->default(Good::TYPE_DEFAULT)->stacked();
         $form->decimal('price', 'Цена');
         $form->radio('need_human_action', 'Взаимодействие с менеджером')->options([0 => 'Нет', 1 => 'Да']);
-        $form->select('good_category_id', 'Категория')->options($test);
+        $form->select('good_category_id', 'Категория')->options($category);
         $form->tmeditor('description')->options(['lang' => 'fr', 'height' => 500]);
+
+        $form->saving(function (Form $form) {
+            $form->label ??= '';
+        });
 
         return $form;
     }

@@ -18,7 +18,11 @@
     </tr>
     @foreach($order['goods'] as $good)
         <tr class="goods">
-            <td class="good-name">{{$good['name']}}:</td>
+            @if (array_key_exists( 'duration', $order->details) && !empty($good['subscribeDurations']->firstWhere('value', '=', $order->details['duration'])))
+                <td class="good-name">{{$good['name']}} ({{$good['subscribeDurations']->firstWhere('value', '=', $order->details['duration'])['label']}}):</td>
+            @else
+                <td class="good-name">{{$good['name']}}:</td>
+            @endif
             <td class="good-count">{{$good['pivot']['count']}}</td>
         </tr>
     @endforeach
